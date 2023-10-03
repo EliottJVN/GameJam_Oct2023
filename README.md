@@ -4,11 +4,9 @@
 
 ICAM Site de Toulouse
 
-&nbsp;
 
 Game Jam 14 et 15 Octobre 2023
 
-&nbsp;
 
 Thême: Innovation à travers l'histoire
 
