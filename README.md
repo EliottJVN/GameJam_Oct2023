@@ -9,6 +9,6 @@ Thême: Innovation à travers l'histoire
 Organisateur : Firas MOURAD
 
 ### Equipe : Studio 2025
-### Membre :
+### Membres :
     1. Eliott JOUVIN
     2. Jules JOUVIN
