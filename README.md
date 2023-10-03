@@ -1,8 +1,8 @@
-======= HACKATLON =======
-ICAM Site de Toulouse
-Game Jam 14 et 15 Octobre 2023
-Thême: Innovation à travers l'histoire
-Organisateur : Firas MOURAD
+======= HACKATLON =======\n
+ICAM Site de Toulouse\n
+Game Jam 14 et 15 Octobre 2023\n
+Thême: Innovation à travers l'histoire\n
+Organisateur : Firas MOURAD\n
 
 Equipe : Studio 2025
 Membre :
