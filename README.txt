@@ -1,1 +1,10 @@
-GameJam
+======= HACKATLON =======
+ICAM Site de Toulouse
+Game Jam 14 et 15 Octobre 2023
+Thême: Innovation à travers l'histoire
+Organisateur : Firas MOURAD
+
+Equipe : 
+Membre :
+    1. Eliott JOUVIN
+    2. Jules JOUVIN
