@@ -1,4 +1,4 @@
-# HACKATLON
+# Ada Lovelace
 
 ICAM Site de Toulouse
 
