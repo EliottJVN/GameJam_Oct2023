@@ -8,6 +8,8 @@ class Main:
         display.set_mode((500,500), pygame.RESIZABLE)
         display.set_caption("GameJam 2023")
         
+        clock = pygame.time.Clock()
+
         # Récupère la taille des écrans sous forme d'une liste de tuples
         screen = display.get_desktop_sizes()
 
@@ -18,6 +20,7 @@ class Main:
                     running = False
                     pygame.quit()  
             display.flip()
+            clock.tick(60)    # Max 60 FPS
 
 
 if __name__ == "__main__":
