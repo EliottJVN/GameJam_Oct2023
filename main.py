@@ -18,9 +18,11 @@ class Main:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
-                    pygame.quit()  
+                    pygame.quit()
+
+              
             display.flip()
-            clock.tick(60)    # Max 60 FPS
+            clock.tick(60)    # Running at 60 FPS
 
 
 if __name__ == "__main__":
