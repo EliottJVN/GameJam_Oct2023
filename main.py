@@ -1,6 +1,6 @@
 import pygame
 
-class Main:
+class Main():
     def __init__(self):
         pygame.init()
         
