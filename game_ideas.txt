@@ -26,4 +26,3 @@ I . Game Ideas sur une Innovation Majeur:
 II. Game Ideas sur les Innovations en général :
     1. "Civilization"
     2. "Fes" mais au lieu de pouvoir tournée le plan 2D, on se balade dans le temps.
-    BITE
