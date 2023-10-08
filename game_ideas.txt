@@ -44,9 +44,9 @@ III. Idée retenu :
         5. Vrai bordures.
     - Niveau Age de fer
         But : Obtenir un minerai de fer.
-        1. Dans une caverne, noir.
+        1. Dans une caverne noir.
         2. Utilisation du feu et des outils.
-        3. Battre des ennemie (Chauve-souris ou monstre)
+        3. Battre des ennemies (Chauve-souris ou monstre)
         4. Le joueur a souvent peur.
-        5. Les bordures amène à une bordure aléatoire.
+        5. Les bordures amènent à une bordure aléatoire.
     
