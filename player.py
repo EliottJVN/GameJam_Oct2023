@@ -12,6 +12,7 @@ class Player(Sprite_Animation):
         self.health = HEALTH
         self.max_health = MAX_HEALTH
         self.velocity = VELOCITY_PLAYER
+        self.inventory = None
         self.vector = pygame.math.Vector2(VECTOR) # Vérifie le déplacement
         self.state = STATE
 
@@ -194,7 +195,13 @@ class Player(Sprite_Animation):
                     self.test_collision(sprite)
                 
                 elif sprite.sprite_name == "collectable":
-                    self.test_collision(sprite)
+                    key = pygame.key.get_pressed()
+                    # En fonction des clés mises à jour du vecteur position.
+                    if key[pygame.K_e]:
+                        if self.inventory == None:
+                            self.inventory = sprite.type
+                            sprite.kill()
+
 
     def test_collision(self,sprite):
         if self.vector.x > 0:
