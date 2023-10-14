@@ -41,3 +41,4 @@ LIST_MIDDLE_IMAGE = ['campfire_burning']
 
 # settings collectable
 SCALE_COLLECTABLE = 3
+POSITION_STICK = [(100,100),(700,100), (100,700), (700,700),(400,200)]
