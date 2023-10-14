@@ -32,7 +32,9 @@ class Level:
         # objet
         self.player = Player(self.sprite_enemies, self.collide_sprite)
         self.collectable = Collectable((200,200),"stick")
+        self.rain = Rain(self.all_sprite)
         
+        self.all_sprite.add(self.collectable)
         self.all_sprite.add(self.player)        
 
     
