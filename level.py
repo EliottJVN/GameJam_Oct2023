@@ -1,5 +1,6 @@
 import pygame
 from player import Player
+from settings import *
 
 
 class Level:
@@ -16,6 +17,11 @@ class Level:
 
         # objet
         self.player = Player()
+
+        # text slide stop
+        self.fontStop = pygame.font.SysFont("comicsansms", FONT_SIZE_STOP)
+        self.textStop = self.fontStop.render("PRESS SPACE", True, "black")
+        self.textStop_rect = self.textStop.get_rect(center = FONT_SIZE_STOP_POS)
 
         #group
         self.all_sprite = pygame.sprite.Group()
@@ -55,5 +61,10 @@ class Level:
 
         self.screen.fill("white")
         self.all_sprite.draw(self.screen)
+
+        # pour afficher SPACE pour frame perfect stop
+        if self.level_name == "11":
+            if self.player.slideActive and 450 < pygame.time.get_ticks() - self.player.curentTimeSlide < 700:
+                self.screen.blit(self.textStop, self.textStop_rect)
 
         self.all_sprite.update()

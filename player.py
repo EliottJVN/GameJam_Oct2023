@@ -109,9 +109,14 @@ class Player(Sprite_Animation):
                 self.state = 'left_crash_begin'
             elif self.vector.x > 0:
                 self.state = 'right_crash_begin'
+            # vertical
+            if self.vector.y < 0:
+                self.state = 'right_crash_begin'
+            elif self.vector.y > 0:
+                self.state = 'left_crash_begin'
 
         # gere perfect stop
-        elif self.slideActive and pygame.time.get_ticks() - self.curentTimeSlide < 1000:
+        elif self.slideActive and pygame.time.get_ticks() - self.curentTimeSlide < 700:
             if key[pygame.K_SPACE]:
                 self.perfectStop = True
 
@@ -123,6 +128,11 @@ class Player(Sprite_Animation):
                 self.state = 'left_crash'     
             elif self.vector.x > 0:
                 self.state = 'right_crash'
+            # vertical
+            if self.vector.y < 0:
+                self.state = 'right_crash'
+            elif self.vector.y > 0:
+                self.state = 'left_crash'
 
         #stop slide
         else:
@@ -130,6 +140,7 @@ class Player(Sprite_Animation):
             self.vector.x = 0
             self.vector.y = 0
             self.slideActive = False
+            self.perfectStop = False
 
 
         self.rect.center += self.velocity * self.vector
