@@ -27,19 +27,5 @@ class Collectable(Sprite_Animation):
         Sprite_Animation.animate(self, key = self.type)
     
     def collision(self):
-        for sprite in self.collide_sprite.sprites():
-            if sprite.rect.colliderect(self.rect):
-
-                # collide middleimage
-                if sprite.sprite_name == "middle_image":
-                    if self.vector.x > 0:
-                        self.rect.right = sprite.rect.left
-                    if self.vector.x < 0:
-                        self.rect.left = sprite.rect.right
-                    if self.vector.y > 0:
-                        self.rect.bottom = sprite.rect.top
-                    if self.vector.y < 0:
-                        self.rect.top = sprite.rect.bottom
-    def colision(self):
         pass
     
