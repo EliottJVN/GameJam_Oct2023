@@ -20,7 +20,7 @@ class Player(Sprite_Animation):
         self.rect = self.image.get_rect((X_PLAYER,Y_PLAYER))
     
     def update(self):
-        self.animate(self.vector, self.sprite_name + '_' + self.state)
+        self.animate(self.vector, self.sprite_name)
         self.mouvement()
     
     def mouvement(self):
@@ -48,8 +48,8 @@ class Player(Sprite_Animation):
         # Reload des nouvelles animations
         self.sprite_name = f"player_{self.state}"
         super().__init__(self.sprite_name)
-        
-          
+
+
     def colision(self):
         pass
 

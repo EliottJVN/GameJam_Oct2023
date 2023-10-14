@@ -30,3 +30,6 @@ health_ennemy = 3
 max_health_ennemy = 3
 velocity_ennemy = 5
 vector_ennemy = (0,0) # Vérifie le déplacement
+
+# Scale factor
+SCALE = 20
