@@ -88,14 +88,14 @@ class Level:
 
         if self.levelName == "11":
 
+            # pour la pluie
+            self.rain.update()
+            
             # pour afficher SPACE pour frame perfect stop
             if self.player.slideActive and 450 < pygame.time.get_ticks() - self.player.curentTimeSlide < 700:
                 self.all_sprite.add(self.spaceButon)
             else:
                 self.spaceButon.kill()
-
-            # pour la pluie
-            self.rain.update()
 
 
     def run(self):
