@@ -17,8 +17,10 @@ class Player(Sprite_Animation):
 
         # attributs joueur slide
         self.slide = SLIDE
+        self.slideBegin = False
         self.slideActive = False
         self.perfectStop = False
+        self.walk = False
 
         # Création du rectangle
         self.rect = self.image.get_rect()
@@ -26,6 +28,7 @@ class Player(Sprite_Animation):
 
         # timer glissade
         self.curentTimeSlide = 0
+        self.curentTimeSlideBegin = 0
 
         # group to collide
         self.sprite_enemies = sprite_enemies
@@ -76,21 +79,36 @@ class Player(Sprite_Animation):
         # Récupere un dico des clés pressées.
         key = pygame.key.get_pressed()
         
+        # si commence a marcher
+        if any([key[pygame.K_d], key[pygame.K_z], key[pygame.K_s], key[pygame.K_q]]) and not self.slideBegin and not self.walk:
+            self.slideBegin = True
+            self.curentTimeSlideBegin = pygame.time.get_ticks()
+            self.velocity = 0
+
+        if any([key[pygame.K_d], key[pygame.K_z], key[pygame.K_s], key[pygame.K_q]]) and pygame.time.get_ticks() - self.curentTimeSlideBegin > 500 and self.slideBegin:
+            self.velocity = VELOCITY_PLAYER
+            self.slideBegin = False
+            self.walk = True
+        elif any([key[pygame.K_d], key[pygame.K_z], key[pygame.K_s], key[pygame.K_q]]) and pygame.time.get_ticks() - self.curentTimeSlideBegin > 100 and self.slideBegin:
+            self.velocity = 1
+        elif any([key[pygame.K_d], key[pygame.K_z], key[pygame.K_s], key[pygame.K_q]]) and pygame.time.get_ticks() - self.curentTimeSlideBegin > 200 and self.slideBegin:
+            self.velocity = 3
+
         # En fonction des clés mises à jour du vecteur position.
         if not self.slideActive:
-            if key[pygame.K_d]:
+            if key[pygame.K_d] and not any([key[pygame.K_z], key[pygame.K_s], key[pygame.K_q]]):
                 self.state = 'right'
                 self.vector.x = 1
                 self.vector.y = 0
-            elif key[pygame.K_z]:
+            elif key[pygame.K_z] and not any([key[pygame.K_d], key[pygame.K_s], key[pygame.K_q]]):
                 self.state = 'up'
                 self.vector.x = 0
                 self.vector.y = -1
-            elif key[pygame.K_s]:
+            elif key[pygame.K_s] and not any([key[pygame.K_d], key[pygame.K_z], key[pygame.K_q]]):
                 self.state = 'down'
                 self.vector.x = 0
                 self.vector.y = 1
-            elif key[pygame.K_q]:
+            elif key[pygame.K_q] and not any([key[pygame.K_d], key[pygame.K_z], key[pygame.K_s]]):
                 self.state = 'left'
                 self.vector.x = -1
                 self.vector.y = 0
@@ -104,7 +122,8 @@ class Player(Sprite_Animation):
             else:
                 self.state = 'idle'
                 self.vector.x = 0
-                self.vector.y = 0         
+                self.vector.y = 0    
+                self.walk = False     
 
         #gere le slide
         elif self.slideActive and pygame.time.get_ticks() - self.curentTimeSlide < 500:
