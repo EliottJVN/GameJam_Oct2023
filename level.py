@@ -31,9 +31,10 @@ class Level:
         # objet
         self.player = Player(self.sprite_enemies, self.collide_sprite)
         self.collectable = Collectable((200,200),"stick")
+        
         self.all_sprite.add(self.player)
         self.all_sprite.add(self.collectable)
-
+        
 
     
     # setup level en fonction niveau
