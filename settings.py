@@ -13,7 +13,7 @@ FONT_SIZE_TITLE_POS = (400, 200)
 
 
 # settings pos button
-BUTONS_POS = {"intro next": (200, 600), "menu jouer": (100, 100), "menu continuer": (200, 300), "menu quit": (300, 400)}
+BUTONS_POS = {"intro next": (700, 700), "menu jouer": (400, 500), "menu continuer": (400, 600), "menu quit": (400, 700)}
 
 # settings player
 health = 3

@@ -14,9 +14,6 @@ class Level:
         self.all_sprite = pygame.sprite.Group()
         self.sprite_enemies = pygame.sprite.Group()
 
-        # player
-        self.player = Player()
-        self.all_sprite.add(self.player)
         
 
 
