@@ -2,7 +2,7 @@ import pygame
 from settings import *
 
 class Sprite_Animation(pygame.sprite.Sprite):
-    def __init__(self, sprite_name, state, list_state, scale, fps = 1):
+    def __init__(self, sprite_name, state, list_state, scale=1, fps = 1):
         super().__init__()
         self.sprite_name = sprite_name
         self.fps = fps
