@@ -7,9 +7,22 @@ class Level:
 
     def __init__(self):
         
-        self.screen = pygame.display.get_surface()  
+        #attributs pygame
+        self.screen = pygame.display.get_surface()
+
+        #group
+        self.all_sprite = pygame.sprite.Group()
+        self.sprite_enemies = pygame.sprite.Group()
+
+        # player
+        self.player = Player()
+        self.all_sprite.add(self.player)
+        
 
 
     def run(self):
 
-        self.screen.fill("black")
+        self.screen.fill("white")
+        self.all_sprite.draw(self.screen)
+
+        self.all_sprite.update()
