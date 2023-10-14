@@ -16,10 +16,13 @@ class Player(Sprite_Animation):
         self.state = STATE
 
         # Création du rectangle
-        self.rect = self.image.get_rect(center=(X_PLAYER,Y_PLAYER))
+        self.rect = self.image.get_rect()
+        self.rect.center = (0, 0)
     
+
     def update(self):
         self.mouvement()
+        self.colisionBorder()
         Sprite_Animation.animate(self, self.vector,self.state)
         
     
@@ -35,11 +38,11 @@ class Player(Sprite_Animation):
         elif key[pygame.K_z]:
             self.state = 'up'
             self.vector.x = 0
-            self.vector.y = 1
+            self.vector.y = -1
         elif key[pygame.K_s]:
             self.state = 'down'
             self.vector.x = 0
-            self.vector.y = -1
+            self.vector.y = 1
         elif key[pygame.K_q]:
             self.state = 'left'
             self.vector.x = -1
@@ -49,8 +52,21 @@ class Player(Sprite_Animation):
             self.vector.y = 0
             self.state = 'idle'
 
-    def colision(self):
-        pass
+        self.rect.center += self.velocity * self.vector
+
+    def colisionBorder(self):
+        
+        if self.rect.left < 0:
+            self.rect.left = 0
+
+        if self.rect.right > TAILLE_ECRAN[0]:
+            self.rect.right = TAILLE_ECRAN[0]
+        
+        if self.rect.top < 0:
+            self.rect.top = 0
+
+        if self.rect.bottom > TAILLE_ECRAN[1]:
+            self.rect.bottom = TAILLE_ECRAN[1]
 
 
 

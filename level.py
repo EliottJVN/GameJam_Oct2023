@@ -14,9 +14,14 @@ class Level:
         # attribu str "11", "12", "2"
         self.level_name = None
 
+        # objet
+        self.player = Player()
+
         #group
         self.all_sprite = pygame.sprite.Group()
         self.sprite_enemies = pygame.sprite.Group()
+
+        self.all_sprite.add(self.player)
 
     
     def setup(self, level_name):
