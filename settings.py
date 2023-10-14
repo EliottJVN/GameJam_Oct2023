@@ -40,4 +40,4 @@ LIST_STATE_ENNEMY = ['right','left']
 LIST_MIDDLE_IMAGE = ['campfire_burning']
 
 # settings collectable
-SCALE_STICK = 3
+SCALE_COLLECTABLE = 3

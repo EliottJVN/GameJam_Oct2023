@@ -7,9 +7,9 @@ class Collectable(Sprite_Animation):
         # type 3 valeurs possibles "ore", "stick" et "stone".
         # pos tuples de coord.
         # Adaptation à la classe Sprite_Animation
-        super().__init__("collectable", scale=SCALE_STICK) 
+        super().__init__("collectable", scale=SCALE_COLLECTABLE) 
         img = pygame.image.load(f"assets\images\collectables\{type}.png")
-        img = pygame.transform.scale_by(img,SCALE_STICK)
+        img = pygame.transform.scale_by(img,SCALE_COLLECTABLE)
         self.images = {
             type: [img]
         }
