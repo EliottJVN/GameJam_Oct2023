@@ -14,7 +14,6 @@ class Sprite_Animation(pygame.sprite.Sprite):
     def animate(self, vect=pygame.math.Vector2((0,0)), key=None):
         # Active l'animation si et seulement si il y a déplacement
         images = self.images[key]
-        print(images)
         if vect.magnitude() > 0:
             # Anime le sprite
             if self.current_img < len(images):
@@ -27,12 +26,10 @@ class Sprite_Animation(pygame.sprite.Sprite):
             self.current_img += self.fps
         else: 
             self.image = images[0]
-        print(self.image)
 
 
 def load_animation_images(sprite_name,list_state, scale):
     load = {}
-       
     for state in list_state:
         try:
             i = 0
@@ -47,8 +44,6 @@ def load_animation_images(sprite_name,list_state, scale):
             
         except:
             pass
-    
-    print(load)
     return load
     
 
