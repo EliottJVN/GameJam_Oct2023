@@ -20,7 +20,8 @@ class Player(Sprite_Animation):
         self.rect = self.image.get_rect(center=(X_PLAYER,Y_PLAYER))
     
     def update(self):
-        self.animate(self.vector, self.sprite_name)
+        print(self.sprite_name)
+        Sprite_Animation.animate(self, self.vector)
         self.mouvement()
     
     def mouvement(self):
