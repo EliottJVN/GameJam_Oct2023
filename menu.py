@@ -10,7 +10,7 @@ class Menu:
         self.screen.fill("green")
 
         # groups
-        self.all_sprites = 
+        self.all_sprites = pygame.sprite.Group()
 
 
     def run(self):
