@@ -8,7 +8,7 @@ class Main():
         # initiation pyagme
         pygame.init()
     
-        self.display = pygame.display
+        self.display = pygame.display()
         self.display.set_mode(TAILLE_ECRAN, pygame.RESIZABLE)
         self.display.set_caption("GameJam 2023")
 

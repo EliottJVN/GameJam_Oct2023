@@ -10,7 +10,6 @@ class Menu:
         
         # attribut pygame
         self.screen = pygame.display.get_surface()
-        self.screen.fill("green")
 
         # groups
         self.all_sprites = pygame.sprite.Group()
@@ -19,6 +18,10 @@ class Menu:
         self.fontIntro = pygame.font.SysFont("comicsansms", FONT_SIZE_INTRO)
         self.textIntro = self.fontIntro.render("I N T R O", True, "black")
         self.textIntro_rect = self.textIntro.get_rect(center = FONT_SIZE_INTRO_POS)
+
+        self.fontTitle = pygame.font.SysFont("comicsansms", FONT_SIZE_TITLE)
+        self.textTitle = self.fontTitle.render("I N T R O", True, "black")
+        self.textTitle_rect = self.textTitle.get_rect(center = FONT_SIZE_TITLE_POS)
 
         # bouton
         self.nextButton = Bouton_Image((300, 300), "assets/target.png", clickable=True)
@@ -31,6 +34,7 @@ class Menu:
     # gere l'intro
     def intro(self):
         
+        self.screen.fill("green")
         self.screen.blit(self.textIntro, self.textIntro_rect)
         
         # bouton pour passer
@@ -40,8 +44,11 @@ class Menu:
 
     # gere le menu
     def menuAffiche(self):
-
+        
         self.fill("red")
+        self.screen(self.textTitle, self.textTitle_rect)
+
+        # bouton
 
 
     def run(self):
@@ -49,4 +56,4 @@ class Menu:
         if self.introActive: 
             self.intro()
         else:
-            self.menu()
+            self.menuAffiche()
