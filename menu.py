@@ -20,19 +20,34 @@ class Menu:
         self.textIntro_rect = self.textIntro.get_rect(center = FONT_SIZE_INTRO_POS)
 
         self.fontTitle = pygame.font.SysFont("comicsansms", FONT_SIZE_TITLE)
-        self.textTitle = self.fontTitle.render("I N T R O", True, "black")
+        self.textTitle = self.fontTitle.render("T I T R E", True, "black")
         self.textTitle_rect = self.textTitle.get_rect(center = FONT_SIZE_TITLE_POS)
 
         # bouton
-        self.nextButton = Bouton_Image(BUTONS_POS["intro next"], "assets/images/continue_button/export_button0.png", 
+        self.nextButton = Bouton_Image(BUTONS_POS["intro next"], "assets/images/next_button/next_button0.png", 
+                                       clickable=True, 
+                                       survolable = True, 
+                                       image_path_survolee="assets/images/next_button/next_button2.png",
+                                       resize = 2)
+
+        self.playButton = Bouton_Image(BUTONS_POS["menu jouer"], "assets/images/start_button/start_button0.png",
+                                       group =  self.all_buttons_menu,
+                                       clickable=True, 
+                                       survolable = True, 
+                                       image_path_survolee="assets/images/start_button/start_button2.png",
+                                       resize = 2)
+        self.continueButton = Bouton_Image(BUTONS_POS["menu continuer"], "assets/images/continue_button/export_button0.png", 
+                                       group =  self.all_buttons_menu,    
                                        clickable=True, 
                                        survolable = True, 
                                        image_path_survolee="assets/images/continue_button/export_button2.png",
-                                       resize = 20)
-
-        self.playButton = Bouton_Image(BUTONS_POS["menu jouer"], "assets/images/target.png", clickable=True, group = self.all_buttons_menu)
-        self.continueButton = Bouton_Image(BUTONS_POS["menu continuer"], "assets/images/target.png", clickable=True, group = self.all_buttons_menu)
-        self.quitButton = Bouton_Image(BUTONS_POS["menu quit"], "assets/images/target.png", clickable=True, group = self.all_buttons_menu)
+                                       resize = 2)
+        self.quitButton = Bouton_Image(BUTONS_POS["menu quit"], "assets/images/quit_button/quit_button0.png", 
+                                       group =  self.all_buttons_menu,
+                                       clickable=True, 
+                                       survolable = True, 
+                                       image_path_survolee="assets/images/quit_button/quit_button2.png",
+                                       resize = 2)
 
         # iattributs
         self.introActive = True
