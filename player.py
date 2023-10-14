@@ -45,10 +45,12 @@ class Player(Sprite_Animation):
             self.state = 'left'
             self.vector.x = -1
             self.vector.y = 0
+        else:
+            self.state = 'idle'
         
         # Reload des nouvelles animations
-        self.sprite_name = f"player_{self.state}"
-        super().__init__(self.sprite_name)
+        # self.sprite_name = f"player_{self.state}"
+        # super().__init__(self.sprite_name)
 
 
     def colision(self):
