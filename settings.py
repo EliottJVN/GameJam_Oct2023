@@ -32,4 +32,4 @@ VELOCITY_ENNEMY = 5
 VECTOR_ENNEMY = (0,0) # Vérifie le déplacement
 
 # Scale factor
-SCALE = 20
+SCALE = 150

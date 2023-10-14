@@ -7,6 +7,7 @@ class Running_Ennemy(Sprite_Animation):
         super.__init__("goat")
         
         # Création des attributs par défaut de la chevre
+        self.state = state
         self.velocity = VELOCITY_ENNEMY
         self.vector = pygame.math.Vector2(VECTOR_ENNEMY) # Vérifie le déplacement
 
@@ -16,7 +17,7 @@ class Running_Ennemy(Sprite_Animation):
         self.rect.y = 0
     
     def update(self):
-        self.animate(self, self.vector)
+        self.animate(self, self.vector,self.state)
     
     def colision(self):
         pass
