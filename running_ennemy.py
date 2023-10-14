@@ -1,4 +1,5 @@
 import pygame
+from settings import *
 from sprite_animation import Sprite_Animation
 
 class Running_Ennemy(Sprite_Animation):
@@ -6,10 +7,10 @@ class Running_Ennemy(Sprite_Animation):
         super.__init__("r_ennemy")
         
         # Création des attributs par défaut du joueur
-        self.health = 3
-        self.max_health = 3
-        self.velocity = 5
-        self.vector = pygame.math.Vector2((0,0)) # Vérifie le déplacement
+        self.health = health_ennemy
+        self.max_health = max_health_ennemy
+        self.velocity = velocity_ennemy
+        self.vector = pygame.math.Vector2(vector_ennemy) # Vérifie le déplacement
 
         # Création du rectangle
         self.rect = self.image.get_rect()

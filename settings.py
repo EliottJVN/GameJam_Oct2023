@@ -18,6 +18,12 @@ BUTONS_POS = {"intro next": (200, 600), "menu jouer": (100, 100), "menu continue
 # settings player
 health = 3
 max_health = 3
-velocity = 5
+velocity_player = 5
 vector = (0,0) # Vérifie le déplacement
 slide = False
+
+# settings runnig ennemy
+health_ennemy = 3
+max_health_ennemy = 3
+velocity_ennemy = 5
+vector_ennemy = (0,0) # Vérifie le déplacement

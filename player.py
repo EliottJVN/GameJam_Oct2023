@@ -1,4 +1,5 @@
 import pygame
+from settings import *
 from sprite_animation import Sprite_Animation
 
 class Player(Sprite_Animation):
@@ -6,11 +7,11 @@ class Player(Sprite_Animation):
         super.__init__("player")
         
         # Création des attributs par défaut du joueur
-        self.health = 3
-        self.max_health = 3
-        self.velocity = 5
-        self.vector = pygame.math.Vector2((0,0)) # Vérifie le déplacement
-        self.slide = False
+        self.health = health
+        self.max_health = max_health
+        self.velocity = velocity_player
+        self.vector = pygame.math.Vector2(vector) # Vérifie le déplacement
+        self.slide = slide
 
         # Création du rectangle
         self.rect = self.image.get_rect()
