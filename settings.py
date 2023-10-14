@@ -17,21 +17,19 @@ BUTONS_POS = {"intro next": (700, 700), "menu jouer": (400, 500), "menu continue
 BUTON_MAP_POS = [(200, 300), (200, 500), (400, 600)]
 
 # settings player
-health = 3
-max_health = 3
-velocity_player = 5
-vector = (0,0) # Vérifie le déplacement
-slide = False
+HEALTH = 3
+MAX_HEALTH = 3
+VELOCITY_PLAYER = 5
+VECTOR = (0,0) # Vérifie le déplacement
+SLIDE = False
 X_PLAYER = 400
 Y_PLAYER = 400
 STATE = 'idle'
 LIST_STATE = ['idle','right','left','up','down']
 
-# settings runnig ennemy
-health_ennemy = 3
-max_health_ennemy = 3
-velocity_ennemy = 5
-vector_ennemy = (0,0) # Vérifie le déplacement
+# settings runnig ENNEMY
+VELOCITY_ENNEMY = 5
+VECTOR_ENNEMY = (0,0) # Vérifie le déplacement
 
 # Scale factor
 SCALE = 20
