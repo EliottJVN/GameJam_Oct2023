@@ -6,15 +6,18 @@ class Player(Sprite_Animation):
     def __init__(self):
         self.state = STATE
         super().__init__("player",self.state,LIST_STATE, 3, fps = 0.15) 
-        # Création des attributs par défaut du joueur
-        
+
+        # Création des attributs par défaut du joueur    
         self.health = HEALTH
         self.max_health = MAX_HEALTH
         self.velocity = VELOCITY_PLAYER
         self.vector = pygame.math.Vector2(VECTOR) # Vérifie le déplacement
+        self.state = STATE
+
+        # attributs joueur slide
         self.slide = SLIDE
         self.slideActive = False
-        self.state = STATE
+        self.perfectStop = False
 
         # Création du rectangle
         self.rect = self.image.get_rect()
@@ -85,25 +88,60 @@ class Player(Sprite_Animation):
                 self.state = 'left'
                 self.vector.x = -1
                 self.vector.y = 0
+
             # le player s'arrete sliiiiiide
             elif self.vector.magnitude() > 0:
                 self.slideActive = True
                 self.curentTimeSlide = pygame.time.get_ticks()
+                print("not working")
+
             # le player est arrété
             else:
                 self.state = 'idle'
                 self.vector.x = 0
-                self.vector.y = 0
+                self.vector.y = 0         
+
+        #gere le slide
+        elif self.slideActive and pygame.time.get_ticks() - self.curentTimeSlide < 500:
+            # horizontal
+            self.velocity = 2
+            if self.vector.x < 0:
+                self.state = 'left_crash_begin'
+            elif self.vector.x > 0:
+                self.state = 'right_crash_begin'
+            # vertical
+            if self.vector.y < 0:
+                self.state = 'right_crash_begin'
+            elif self.vector.y > 0:
+                self.state = 'left_crash_begin'
+
+        # gere perfect stop
+        elif self.slideActive and pygame.time.get_ticks() - self.curentTimeSlide < 700:
+            if key[pygame.K_SPACE]:
+                self.perfectStop = True
 
         # gere le slide
-        elif self.slideActive and self.velocity >= 0:
+        elif self.slideActive and pygame.time.get_ticks() - self.curentTimeSlide < 3000 and not self.perfectStop:
+            self.velocity = 1
             #horizontal
             if self.vector.x < 0:
-                self.state = 'left_crash'
-                self.velocity -= 0.1
+                self.state = 'left_crash'     
             elif self.vector.x > 0:
                 self.state = 'right_crash'
-                self.velocity -= 0.1
+            # vertical
+            if self.vector.y < 0:
+                self.state = 'right_crash'
+            elif self.vector.y > 0:
+                self.state = 'left_crash'
+
+        #stop slide
+        else:
+            self.velocity = VELOCITY_PLAYER
+            self.vector.x = 0
+            self.vector.y = 0
+            self.slideActive = False
+            self.perfectStop = False
+
 
         self.rect.center += self.velocity * self.vector
 

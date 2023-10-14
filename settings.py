@@ -11,6 +11,9 @@ FONT_SIZE_INTRO_POS = (400, 400)
 FONT_SIZE_TITLE = 60
 FONT_SIZE_TITLE_POS = (400, 200)
 
+FONT_SIZE_STOP = 100
+FONT_SIZE_STOP_POS = (400, 400)
+
 
 # settings pos button
 BUTONS_POS = {"intro next": (700, 700), "menu jouer": (400, 500), "menu continuer": (400, 600), "menu quit": (400, 700)}
@@ -25,7 +28,7 @@ SLIDE = False
 X_PLAYER = 400
 Y_PLAYER = 400
 STATE = 'down'
-LIST_STATE = ['idle','right','left','up','down', 'right_crash', 'left_crash']
+LIST_STATE = ['idle','right','left','up','down', 'right_crash', 'left_crash', 'right_crash_begin', 'left_crash_begin']
 
 # settings runnig ENNEMY
 VELOCITY_ENNEMY = 5
