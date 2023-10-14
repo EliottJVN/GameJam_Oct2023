@@ -3,6 +3,7 @@ from player import Player
 from collectable import Collectable
 from settings import *
 from middleImage import *
+from button import Space_Buton
 
 
 class Level:
@@ -19,10 +20,8 @@ class Level:
         self.middleImage = None
         self.rain = False
 
-        # text slide stop
-        self.fontStop = pygame.font.SysFont("comicsansms", FONT_SIZE_STOP)
-        self.textStop = self.fontStop.render("PRESS SPACE", True, "black")
-        self.textStop_rect = self.textStop.get_rect(center = FONT_SIZE_STOP_POS)
+        # button space
+        self.spaceButon = Space_Buton()
 
         #group
         self.all_sprite = pygame.sprite.Group()
@@ -83,7 +82,9 @@ class Level:
         # pour afficher SPACE pour frame perfect stop
         if self.levelName == "11":
             if self.player.slideActive and 450 < pygame.time.get_ticks() - self.player.curentTimeSlide < 700:
-                self.screen.blit(self.textStop, self.textStop_rect)
+                self.all_sprite.add(self.spaceButon)
+            else:
+                self.spaceButon.kill()
 
 
     def run(self):
