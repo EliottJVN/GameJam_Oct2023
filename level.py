@@ -30,7 +30,7 @@ class Level:
         self.level_name = level_name
 
         if self.level_name == "11":
-            pass
+            self.player.slide = True
 
         elif self.level_name == "12":
             pass
@@ -44,6 +44,8 @@ class Level:
 
         self.level_name = None
         self.image = None
+
+        self.player.slide = False
 
         self.all_sprite.clear()
         self.sprite_enemies.clear()

@@ -13,15 +13,22 @@ class Player(Sprite_Animation):
         self.velocity = VELOCITY_PLAYER
         self.vector = pygame.math.Vector2(VECTOR) # Vérifie le déplacement
         self.slide = SLIDE
+        self.slideActive = False
         self.state = STATE
 
         # Création du rectangle
         self.rect = self.image.get_rect()
         self.rect.center = (0, 0)
+
+        # timer glissade
+        self.curentTimeSlide = 0
     
 
     def update(self):
-        self.mouvement()
+        if self.slide:
+            self.mouvementSlide()
+        else:
+            self.mouvement()
         self.colisionBorder()
         Sprite_Animation.animate(self, self.vector,self.state)
         
@@ -53,6 +60,53 @@ class Player(Sprite_Animation):
             self.state = 'idle'
 
         self.rect.center += self.velocity * self.vector
+
+
+    def mouvementSlide(self):
+
+        # Récupere un dico des clés pressées.
+        key = pygame.key.get_pressed()
+        
+        # En fonction des clés mises à jour du vecteur position.
+        if not self.slideActive:
+            if key[pygame.K_d]:
+                self.state = 'right'
+                self.vector.x = 1
+                self.vector.y = 0
+            elif key[pygame.K_z]:
+                self.state = 'up'
+                self.vector.x = 0
+                self.vector.y = -1
+            elif key[pygame.K_s]:
+                self.state = 'down'
+                self.vector.x = 0
+                self.vector.y = 1
+            elif key[pygame.K_q]:
+                self.state = 'left'
+                self.vector.x = -1
+                self.vector.y = 0
+            # le player s'arrete sliiiiiide
+            elif self.vector.magnitude() > 0:
+                self.slideActive = True
+                self.curentTimeSlide = pygame.time.get_ticks()
+            # le player est arrété
+            else:
+                self.state = 'idle'
+                self.vector.x = 0
+                self.vector.y = 0
+
+        # gere le slide
+        elif self.slideActive and self.velocity >= 0:
+            #horizontal
+            if self.vector.x < 0:
+                self.state = 'left_crash'
+                self.velocity -= 0.1
+            elif self.vector.x > 0:
+                self.state = 'right_crash'
+                self.velocity -= 0.1
+
+        self.rect.center += self.velocity * self.vector
+
 
     def colisionBorder(self):
         
