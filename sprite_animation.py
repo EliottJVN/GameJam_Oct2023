@@ -1,4 +1,5 @@
 import pygame
+from settings import *
 
 class Sprite_Animation(pygame.sprite.Sprite):
     def __init__(self, sprite_name):
@@ -33,5 +34,21 @@ def load_animation_images(sprite_name):
     
     return images
 
-
+if __name__ == '__main__':
+    # Création de la fenêtre
+    pygame.init()
+    screen = pygame.display
+    screen.set_mode(TAILLE_ECRAN, pygame.RESIZABLE)
+    screen.set_caption("GameJam 2023")
+    running = True
+    while running:
+        bg = pygame.display.get_surface()
+        bg.fill("green")
+        screen.update()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+                pygame.quit()
+        pygame.time.Clock().tick(60)
+    
 
