@@ -13,8 +13,8 @@ class Rain:
         self.all_sprite = all_sprite
 
         # listes surface
-        self.drops_list = [pygame.transform.scale_by(pygame.image.load(f"assets/images/rains/rain{i}.png").convert_alpha(),3) for i in range(3)]
-        self.floor_list = [pygame.transform.scale_by(pygame.image.load(f"assets/images/rains/rain{i}.png").convert_alpha(),3) for i in range(3, 6)]
+        self.drops_list = [pygame.transform.scale_by(pygame.image.load(f"assets/images/rain/rain{i}.png").convert_alpha(),3) for i in range(3)]
+        self.floor_list = [pygame.transform.scale_by(pygame.image.load(f"assets/images/rain/rain{i}.png").convert_alpha(),3) for i in range(3, 6)]
 
     def create_floor(self):
 
@@ -22,12 +22,12 @@ class Rain:
 
     def create_drop(self):
 
-        Drop(self.all_sprite, True, choice(self.drops_list), (randint(0,TAILLE_ECRAN[0]),randint(0,TAILLE_ECRAN[1])))
+        Drop(self.all_sprite, True, choice(self.drops_list), (randint(50,TAILLE_ECRAN[0]),randint(-50,TAILLE_ECRAN[1]-50)))
 
     def update(self):
 
         self.create_drop()
-        self.create_floor()
+        self.create_floor() 
 
 
 
@@ -37,9 +37,9 @@ class Drop(pygame.sprite.Sprite):
 
         super().__init__(all_sprite)
 
-        self.surf = surf
-        self.rect = self.surf.get_rect()
-        self.rect.top_left = pos
+        self.image = surf
+        self.rect = self.image.get_rect()
+        self.rect.topleft = pos
 
         self.lifetime = randint(400, 500)
         self.start_time = pygame.time.get_ticks()
@@ -48,8 +48,8 @@ class Drop(pygame.sprite.Sprite):
         self.moving = moving
         if self.moving:
             self.pos = pygame.math.Vector2(self.rect.topleft)
-            self.direction = pygame.math.Vector2(-2*3,4*3)
-            self.speed = randint(200,250)
+            self.direction = pygame.math.Vector2(-2,4)
+            self.speed = randint(4,7)
 
     def update(self):
         # moovement

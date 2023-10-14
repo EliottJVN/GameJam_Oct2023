@@ -189,14 +189,19 @@ class Player(Sprite_Animation):
 
         for sprite in self.collide_sprite.sprites():
             if sprite.rect.colliderect(self.rect):
-
                 # collide middleimage
                 if sprite.sprite_name == "middle_image":
-                    if self.vector.x > 0:
-                        self.rect.right = sprite.rect.left
-                    if self.vector.x < 0:
-                        self.rect.left = sprite.rect.right
-                    if self.vector.y > 0:
-                        self.rect.bottom = sprite.rect.top
-                    if self.vector.y < 0:
-                        self.rect.top = sprite.rect.bottom
+                    self.test_collision(sprite)
+                
+                elif sprite.sprite_name == "collectable":
+                    self.test_collision(sprite)
+
+    def test_collision(self,sprite):
+        if self.vector.x > 0:
+            self.rect.right = sprite.rect.left
+        if self.vector.x < 0:
+            self.rect.left = sprite.rect.right
+        if self.vector.y > 0:
+            self.rect.bottom = sprite.rect.top
+        if self.vector.y < 0:
+            self.rect.top = sprite.rect.bottom       
