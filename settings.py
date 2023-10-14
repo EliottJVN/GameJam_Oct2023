@@ -24,8 +24,8 @@ VECTOR = (0,0) # Vérifie le déplacement
 SLIDE = False
 X_PLAYER = 400
 Y_PLAYER = 400
-STATE = 'right'
-LIST_STATE = ['idle','right','left','up','down']
+STATE = 'down'
+LIST_STATE = ['idle','right','left','up','down', 'right_crash', 'left_crash']
 
 # settings runnig ENNEMY
 VELOCITY_ENNEMY = 5
