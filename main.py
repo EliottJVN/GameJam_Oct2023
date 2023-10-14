@@ -1,4 +1,6 @@
 import pygame
+from settings import *
+from menu import Menu
 
 class Main():
     def __init__(self):
@@ -7,7 +9,7 @@ class Main():
         pygame.init()
     
         self.display = pygame.display
-        self.display.set_mode((500,500), pygame.RESIZABLE)
+        self.display.set_mode(TAILLE_ECRAN, pygame.RESIZABLE)
         self.display.set_caption("GameJam 2023")
 
         self.running = 1
@@ -15,15 +17,20 @@ class Main():
 
         # gère le game state
         self.game_state = "intro"
+
+        # création des objets
+        self.menu = Menu()
         
     
-    # event loop de intro + intro
+    # event loop de intro + menu
     def intro(self):
             
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                running = False
+                self.running = False
                 pygame.quit()
+
+        self.menu.run()   
 
 
     def game_State_Management(self):
@@ -34,7 +41,7 @@ class Main():
                 self.intro()
 
             pygame.display.update()
-            self.clock.tick(60)
+            self.clock.tick(FPS)
 
 
 
