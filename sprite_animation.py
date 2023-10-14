@@ -24,24 +24,26 @@ class Sprite_Animation(pygame.sprite.Sprite):
             self.image = self.images[0]
 
 
-def load_animation_images(sprite_name):
-    images = []
-    path = "assets\images\{}\{}".format(sprite_name,sprite_name)
-    try:
+def load_animation_images(sprite_name,list_state):
+    images = {}
+    
+    
+    for state in list_state:
+        #try:
         i = 0
         while True:
-            # Redimension des images.
+            
             print("load")
             print(sprite_name)
-            img = pygame.image.load(path+str(i)+".png")
+            # Redimension des images.
+            img = pygame.image.load(f"assets\images\{sprite_name}\{sprite_name}_{state}\{sprite_name}_{state}{i}.png")
             print('pass1')
-            img = pygame.transform.scale_by(img,SCALE)
+            img = pygame.transform.scale(img,(img.get_width()*SCALE,img.get_length()*SCALE))
             print('pass2')
             images.append(img)
-            print('pass')
             i += 1
-    except:
-        pass
+        #except:
+            pass
     return images
     
 

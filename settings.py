@@ -23,7 +23,7 @@ vector = (0,0) # Vérifie le déplacement
 slide = False
 X_PLAYER = 400
 Y_PLAYER = 400
-STATE = 'down'
+STATE = 'idle'
 
 # settings runnig ennemy
 health_ennemy = 3
