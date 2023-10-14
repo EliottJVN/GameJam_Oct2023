@@ -26,26 +26,26 @@ class Player(Sprite_Animation):
     def mouvement(self):
         # Récupere un dico des clés pressées.
         key = pygame.key.get_pressed()
-
+        
         # En fonction des clés mises à jour du vecteur position.
-        if key == pygame.K_d:
+        if key[pygame.K_d]:
             self.state = 'right'
             self.vector.x = 1
             self.vector.y = 0
-        elif key == pygame.K_z:
+        elif key[pygame.K_z]:
             self.state = 'up'
             self.vector.x = 0
             self.vector.y = 1
-        elif key == pygame.K_s:
+        elif key[pygame.K_s]:
             self.state = 'down'
             self.vector.x = 0
             self.vector.y = -1
-        elif key == pygame.K_q:
+        elif key[pygame.K_q]:
             self.state = 'left'
             self.vector.x = -1
             self.vector.y = 0
-        else:
-            self.state = 'idle'
+        #else:
+        #    self.state = 'idle'
 
     def colision(self):
         pass
