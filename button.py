@@ -68,3 +68,12 @@ class Bouton_Image(pygame.sprite.Sprite):
                 if self.clickable: self.pressed = False
                 if self.survolable:
                     if self.image_path_survolee: self.animation("idle")
+
+
+
+# animation bouton press !!!!!!!!!!!!
+class Space_Buton(Bouton_Image):
+
+    def __init__(self, coordonee, image_path, group=None, clickable=False, survolable=False, image_path_survolee=None, resize=None, point_position="center", name=None):
+
+        super().__init__(coordonee, image_path, group, clickable, survolable, image_path_survolee, resize, point_position, name)
