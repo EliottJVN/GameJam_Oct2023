@@ -22,7 +22,8 @@ class Collectable(Sprite_Animation):
         self.rect.center = pos
 
         # group to collide
-        self.collide_sprite = group 
+        #self.collide_sprite = group[0]
+        
     
 
     def update(self):

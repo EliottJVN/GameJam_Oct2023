@@ -25,17 +25,15 @@ class Level:
 
         #group
         self.all_sprite = pygame.sprite.Group()
+        self.sprite_sticks = pygame.sprite.Group()
         self.sprite_enemies = pygame.sprite.Group()
         self.collide_sprite = pygame.sprite.Group()
 
         # objet
         self.player = Player(self.sprite_enemies, self.collide_sprite)
         self.collectable = Collectable((200,200),"stick")
-        self.rain = Rain(self.all_sprite)
         
-        self.all_sprite.add(self.player)
-        self.all_sprite.add(self.collectable)
-        
+        self.all_sprite.add(self.player)        
 
     
     # setup level en fonction niveau
