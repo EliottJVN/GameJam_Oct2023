@@ -25,7 +25,7 @@ SLIDE = False
 X_PLAYER = 400
 Y_PLAYER = 400
 STATE = 'down'
-LIST_STATE = ['idle','right','left','up','down', 'right_crash', 'left_crash']
+LIST_STATE = ['idle','right','left','up','down', 'right_crash', 'left_crash', 'right_crash_begin', 'left_crash_begin']
 
 # settings runnig ENNEMY
 VELOCITY_ENNEMY = 5
