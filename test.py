@@ -9,10 +9,11 @@ screen = pygame.display
 screen.set_mode(TAILLE_ECRAN, pygame.RESIZABLE)
 screen.set_caption("GameJam 2023")
 running = True
+player = Player()
 while running:
     bg = pygame.display.get_surface()
     bg.fill("green")
-    player = Player()
+    
     screen.update()
     
     for event in pygame.event.get():

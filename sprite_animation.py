@@ -2,12 +2,12 @@ import pygame
 from settings import *
 
 class Sprite_Animation(pygame.sprite.Sprite):
-    def __init__(self, sprite_name):
+    def __init__(self, sprite_name,state):
         super().__init__()
         self.sprite_name = sprite_name
-        self.image = pygame.image.load(f'assets/images/{sprite_name}/{sprite_name}0.png') # Image par défaut
+        self.image = pygame.image.load(f'assets/images/{sprite_name}/{sprite_name}_{state}/{sprite_name}_{state}0.png') # Image par défaut
         self.current_img = 0 # Frame début d'animation
-        self.images = load_animation_images(sprite_name)
+        self.images = load_animation_images(sprite_name,LIST_STATE)
 
     def animate(self, vect):
         # Active l'animation si et seulement si il y a déplacement
@@ -25,25 +25,28 @@ class Sprite_Animation(pygame.sprite.Sprite):
 
 
 def load_animation_images(sprite_name,list_state):
-    images = {}
-    
-    
+    load = {}
+       
     for state in list_state:
-        #try:
-        i = 0
-        while True:
+        try:
+            i = 0
+            images = []
+            while True:
+                print("load"+state)
+                print(sprite_name)
+                # Redimension des images.
+                img = pygame.image.load(f"assets\images\{sprite_name}\{sprite_name}_{state}\{sprite_name}_{state}{i}.png")
+                print('pass1')
+                #img = pygame.transform.scale(img,(img.get_width()*SCALE,img.get_length()*SCALE))
+                print('pass2')
+                images.append(img)
+                load[state] = images
+                i += 1
             
-            print("load")
-            print(sprite_name)
-            # Redimension des images.
-            img = pygame.image.load(f"assets\images\{sprite_name}\{sprite_name}_{state}\{sprite_name}_{state}{i}.png")
-            print('pass1')
-            img = pygame.transform.scale(img,(img.get_width()*SCALE,img.get_length()*SCALE))
-            print('pass2')
-            images.append(img)
-            i += 1
-        #except:
+        except:
             pass
-    return images
+    
+    print(load)
+    return load
     
 

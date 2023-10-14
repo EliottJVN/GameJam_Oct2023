@@ -5,8 +5,7 @@ from sprite_animation import Sprite_Animation
 class Player(Sprite_Animation):
     def __init__(self):
         self.state = STATE
-        self.sprite_name = f"player_{self.state}"
-        super().__init__(self.sprite_name) 
+        super().__init__("player",self.state) 
         # Création des attributs par défaut du joueur
         
         self.health = health
