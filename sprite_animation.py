@@ -7,15 +7,17 @@ class Sprite_Animation(pygame.sprite.Sprite):
         self.current_img = 0 # Frame début d'animation
         self.images = load_animation_images(sprite_name)
     
-    def animate(self):
-        # Anime le sprite
-        self.current_img += 1
-        if self.current_img >= len(self.images):
-            # Change d'image
-            self.image = self.images[self.curent_img]
-        else:
-            # Remise début d'animation
-            self.current_img = 0
+    def animate(self, vect):
+        # Active l'animation si et seulement si il y a déplacement
+        if vect.magnitude() > 0:
+            # Anime le sprite
+            self.current_img += 1
+            if self.current_img >= len(self.images):
+                # Change d'image
+                self.image = self.images[self.curent_img]
+            else:
+                # Remise début d'animation
+                self.current_img = 0
 
 
 def load_animation_images(sprite_name):
