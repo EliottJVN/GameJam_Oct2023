@@ -12,7 +12,10 @@ class Map:
         self.screen = pygame.display.get_surface()
 
         #group
-        self.all_sprite = pygame.sprite.Group()     
+        self.all_sprite = pygame.sprite.Group()   
+
+        # objet
+        self.niveau = None  
 
         # Bouton
         self.level11 = Bouton_Image(BUTON_MAP_POS[0], "assets/images/playable_button/playable_button0.png",
@@ -36,21 +39,28 @@ class Map:
 
     def update(self):
 
-        # si clique faire niveau et passer bouton ver
+        # si clique faire niveau et passer bouton ver et jouer au niveau
         if self.level11.check_click():
             self.level11.clickable = False
             self.level11.survolable = False
             self.level11.image = pygame.transform.scale_by(pygame.image.load("assets/images/played_button/played_button0.png").convert_alpha(), 2)
+
+            self.niveau = "11"
+
 
         elif self.level12.check_click():
             self.level12.clickable = False
             self.level12.survolable = False
             self.level12.image = pygame.transform.scale_by(pygame.image.load("assets/images/played_button/played_button0.png").convert_alpha(), 2)
 
+            self.niveau = "12"
+
         elif self.level2.check_click():
             self.level2.clickable = False
             self.level2.survolable = False
             self.level2.image = pygame.transform.scale_by(pygame.image.load("assets/images/played_button/played_button0.png").convert_alpha(), 2)
+
+            self.niveau = "2"
 
         # checque si les 2 niveaux sont joué ou pas
         if not self.level11.clickable and not self.level12.clickable:
