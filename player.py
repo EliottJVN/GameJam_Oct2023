@@ -3,7 +3,8 @@ from settings import *
 from sprite_animation import Sprite_Animation
 
 class Player(Sprite_Animation):
-    def __init__(self):
+
+    def __init__(self, sprite_enemies, collide_sprite):
         self.state = STATE
         super().__init__("player",self.state,LIST_STATE, 3, fps = 0.15) 
 
@@ -21,10 +22,14 @@ class Player(Sprite_Animation):
 
         # Création du rectangle
         self.rect = self.image.get_rect()
-        self.rect.center = (0, 0)
+        self.rect.center = (300, 400)
 
         # timer glissade
         self.curentTimeSlide = 0
+
+        # group to collide
+        self.sprite_enemies = sprite_enemies
+        self.collide_sprite = collide_sprite 
     
 
     def update(self):
@@ -33,6 +38,7 @@ class Player(Sprite_Animation):
         else:
             self.mouvement()
         self.colisionBorder()
+        self.collision()
         Sprite_Animation.animate(self, self.vector,self.state)
         
     
@@ -93,7 +99,6 @@ class Player(Sprite_Animation):
             elif self.vector.magnitude() > 0:
                 self.slideActive = True
                 self.curentTimeSlide = pygame.time.get_ticks()
-                print("not working")
 
             # le player est arrété
             else:
@@ -161,5 +166,18 @@ class Player(Sprite_Animation):
             self.rect.bottom = TAILLE_ECRAN[1]
 
 
+    def collision(self):
 
-        
+        for sprite in self.collide_sprite.sprites():
+            if sprite.rect.colliderect(self.rect):
+
+                # collide middleimage
+                if sprite.sprite_name == "middle_image":
+                    if self.vector.x > 0:
+                        self.rect.right = sprite.rect.left
+                    if self.vector.x < 0:
+                        self.rect.left = sprite.rect.right
+                    if self.vector.y > 0:
+                        self.rect.bottom = sprite.rect.top
+                    if self.vector.y < 0:
+                        self.rect.top = sprite.rect.bottom
