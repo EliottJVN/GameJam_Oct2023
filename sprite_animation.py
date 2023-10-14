@@ -9,19 +9,20 @@ class Sprite_Animation(pygame.sprite.Sprite):
         self.current_img = 0 # Frame début d'animation
         self.images = load_animation_images(sprite_name,LIST_STATE)
 
-    def animate(self, vect):
+    def animate(self, vect, key):
         # Active l'animation si et seulement si il y a déplacement
+        images = self.images[key]
         if vect.magnitude() > 0:
             # Anime le sprite
             self.current_img += 1
-            if self.current_img >= len(self.images):
+            if self.current_img >= len(images):
                 # Change d'image
-                self.image = self.images[self.curent_img]
+                self.image = images[self.curent_img]
             else:
                 # Remise début d'animation
                 self.current_img = 0
         else: 
-            self.image = self.images[0]
+            self.image = images[0]
 
 
 def load_animation_images(sprite_name,list_state):
@@ -37,7 +38,7 @@ def load_animation_images(sprite_name,list_state):
                 # Redimension des images.
                 img = pygame.image.load(f"assets\images\{sprite_name}\{sprite_name}_{state}\{sprite_name}_{state}{i}.png")
                 print('pass1')
-                #img = pygame.transform.scale(img,(img.get_width()*SCALE,img.get_length()*SCALE))
+                pygame.transform.scale(img,(SCALE,SCALE))
                 print('pass2')
                 images.append(img)
                 load[state] = images
