@@ -31,7 +31,7 @@ class Level:
 
         # objet
         self.player = Player(self.sprite_enemies, self.collide_sprite)
-<<<<<<< HEAD
+
     
         for i in range(5):
             stick = Collectable(POSITION_STICK[i],"stick",(self.collide_sprite))
@@ -39,10 +39,9 @@ class Level:
             self.collide_sprite.add(stick)
             self.all_sprite.add(stick)
 
-=======
         self.collectable = Collectable((200,200),"stick")
         self.rain = Rain(self.all_sprite)
->>>>>>> 4c454144409ba0a08720403f0c52a65b7f59d0f6
+
         
         self.all_sprite.add(self.collectable)
         self.all_sprite.add(self.player)        
