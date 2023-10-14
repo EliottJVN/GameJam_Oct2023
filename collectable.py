@@ -19,11 +19,7 @@ class Collectable(Sprite_Animation):
 
         # Création du rectangle
         self.rect = self.image.get_rect()
-        self.rect.center = pos
-
-        # group to collide
-        self.collide_sprite = group[0]
-        
+        self.rect.center = pos       
     
 
     def update(self):
