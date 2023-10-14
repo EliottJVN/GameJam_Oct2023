@@ -24,6 +24,7 @@ slide = False
 X_PLAYER = 400
 Y_PLAYER = 400
 STATE = 'idle'
+LIST_STATE = ['idle','right','left','up','down']
 
 # settings runnig ennemy
 health_ennemy = 3
