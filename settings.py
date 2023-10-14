@@ -30,6 +30,7 @@ LIST_STATE = ['idle','right','left','up','down']
 # settings runnig ENNEMY
 VELOCITY_ENNEMY = 5
 VECTOR_ENNEMY = (0,0) # Vérifie le déplacement
+LIST_STATE_ENNEMY = ['right','left']
 
 # Scale factor
 SCALE = 150

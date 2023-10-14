@@ -16,10 +16,12 @@ running = True
 
 while running:
     bg = pygame.display.get_surface()
-    bg.fill("green")
-    screen.update()
+    bg.fill("black")
     
+    bg.blit(player.image, player.rect)
+    screen.update()
     player.update()
+    
     
     
 

@@ -5,7 +5,7 @@ from sprite_animation import Sprite_Animation
 class Player(Sprite_Animation):
     def __init__(self):
         self.state = STATE
-        super().__init__("player",self.state) 
+        super().__init__("player",self.state,LIST_STATE) 
         # Création des attributs par défaut du joueur
         
         self.health = HEALTH
@@ -44,8 +44,10 @@ class Player(Sprite_Animation):
             self.state = 'left'
             self.vector.x = -1
             self.vector.y = 0
-        #else:
-        #    self.state = 'idle'
+        else:
+            self.vector.x = 0
+            self.vector.y = 0
+            self.state = 'idle'
 
     def colision(self):
         pass

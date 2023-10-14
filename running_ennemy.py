@@ -4,7 +4,7 @@ from sprite_animation import Sprite_Animation
 
 class Running_Ennemy(Sprite_Animation):
     def ___init__(self, state):
-        super.__init__("goat")
+        super.__init__("goat",LIST_STATE_ENNEMY)
         
         # Création des attributs par défaut de la chevre
         self.state = state
