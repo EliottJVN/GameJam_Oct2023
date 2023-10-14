@@ -9,7 +9,12 @@ FONT_SIZE_INTRO = 60
 FONT_SIZE_INTRO_POS = (400, 400)
 
 FONT_SIZE_TITLE = 60
-FONT_SIZE_TITLE_POS = (400, 600)
+FONT_SIZE_TITLE_POS = (400, 200)
+
+
+# settings pos button
+BUTONS_POS = {"intro next": (200, 600), "menu jouer": (100, 100), "menu continuer": (200, 300), "menu quit": (300, 400)}
+
 # settings player
 health = 3
 max_health = 3

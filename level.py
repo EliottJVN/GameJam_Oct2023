@@ -5,12 +5,11 @@ from player import Player
 class Level:
 
 
-    def __init__(self, surface):
+    def __init__(self):
         
-        self.ecran = pygame.display.get_surface()
+        self.screen = pygame.display.get_surface()  
 
-        # définit attribut
-        self.ecran.fill("black")
 
-        # definit classe
-        self.player = Player()
+    def run(self):
+
+        self.screen.fill("black")
