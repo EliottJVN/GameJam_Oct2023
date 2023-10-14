@@ -14,12 +14,12 @@ class Menu:
         self.all_buttons_menu = pygame.sprite.Group()
 
         # text
-        self.fontIntro = pygame.font.SysFont("comicsansms", FONT_SIZE_INTRO)
+        self.fontIntro = pygame.font.Font("assets/fonts/Pixeled.ttf", FONT_SIZE_INTRO)
         self.textIntro = self.fontIntro.render("I N T R O", True, "black")
         self.textIntro_rect = self.textIntro.get_rect(center = FONT_SIZE_INTRO_POS)
 
-        self.fontTitle = pygame.font.SysFont("comicsansms", FONT_SIZE_TITLE)
-        self.textTitle = self.fontTitle.render("T I T R E", True, "black")
+        self.fontTitle = pygame.font.Font("assets/fonts/Pixeled.ttf", FONT_SIZE_TITLE)
+        self.textTitle = self.fontTitle.render("FLASH MONKEY", True, "black")
         self.textTitle_rect = self.textTitle.get_rect(center = FONT_SIZE_TITLE_POS)
 
         # bouton
