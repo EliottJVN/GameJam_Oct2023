@@ -39,11 +39,9 @@ class Level:
             self.collide_sprite.add(stick)
             self.all_sprite.add(stick)
 
-        self.collectable = Collectable((200,200),"stick")
+        
         self.rain = Rain(self.all_sprite)
 
-        
-        self.all_sprite.add(self.collectable)
         self.all_sprite.add(self.player)        
 
     
