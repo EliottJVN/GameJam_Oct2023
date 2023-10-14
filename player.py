@@ -17,7 +17,7 @@ class Player(Sprite_Animation):
         self.state = STATE
 
         # Création du rectangle
-        self.rect = self.image.get_rect((X_PLAYER,Y_PLAYER))
+        self.rect = self.image.get_rect(center=(X_PLAYER,Y_PLAYER))
     
     def update(self):
         self.animate(self.vector, self.sprite_name)

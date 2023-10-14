@@ -3,10 +3,9 @@ from settings import *
 
 class Sprite_Animation(pygame.sprite.Sprite):
     def __init__(self, sprite_name):
-        print("Sprite_animation")
         super().__init__()
         self.sprite_name = sprite_name
-        self.image = pygame.image.load(f'assets/images/{sprite_name}/{sprite_name}.png') # Image par défaut
+        self.image = pygame.image.load(f'assets/images/{sprite_name}/{sprite_name}0.png') # Image par défaut
         self.current_img = 0 # Frame début d'animation
         self.images = load_animation_images(sprite_name)
 
@@ -26,11 +25,10 @@ class Sprite_Animation(pygame.sprite.Sprite):
 
 
 def load_animation_images(sprite_name):
-    print("load_animation")
     images = []
     path = "assets\images\{}\{}".format(sprite_name,sprite_name)
     try:
-        i = 1
+        i = 0
         while True:
             # Redimension des images.
             img = pygame.image.load(path+str(i)+".png")
