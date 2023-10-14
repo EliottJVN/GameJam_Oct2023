@@ -21,6 +21,9 @@ max_health = 3
 velocity_player = 5
 vector = (0,0) # Vérifie le déplacement
 slide = False
+X_PLAYER = 400
+Y_PLAYER = 400
+STATE = 'down'
 
 # settings runnig ennemy
 health_ennemy = 3

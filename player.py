@@ -4,23 +4,24 @@ from sprite_animation import Sprite_Animation
 
 class Player(Sprite_Animation):
     def __init__(self):
-        print("Player")
-        super().__init__("player") 
-        
+        self.state = STATE
+        self.sprite_name = f"player_{self.state}"
+        super().__init__(self.sprite_name) 
         # Création des attributs par défaut du joueur
+        
         self.health = health
         self.max_health = max_health
         self.velocity = velocity_player
         self.vector = pygame.math.Vector2(vector) # Vérifie le déplacement
         self.slide = slide
+        self.state = STATE
 
         # Création du rectangle
-        self.rect = self.image.get_rect()
-        self.rect.x = 0
-        self.rect.y = 0
+        self.rect = self.image.get_rect((X_PLAYER,Y_PLAYER))
     
     def update(self):
-        self.animate(self.vector)
+        self.animate(self.vector, self.sprite_name + '_' + self.state)
+        self.mouvement()
     
     def mouvement(self):
         # Récupere un dico des clés pressées.
@@ -28,18 +29,27 @@ class Player(Sprite_Animation):
 
         # En fonction des clés mises à jour du vecteur position.
         if key == pygame.K_d:
+            self.state = 'right'
             self.vector.x = 1
             self.vector.y = 0
         elif key == pygame.K_z:
+            self.state = 'up'
             self.vector.x = 0
             self.vector.y = 1
         elif key == pygame.K_s:
+            self.state = 'down'
             self.vector.x = 0
             self.vector.y = -1
         elif key == pygame.K_q:
+            self.state = 'left'
             self.vector.x = -1
             self.vector.y = 0
-                
+        
+        # Reload des nouvelles animations
+        self.sprite_name = f"player_{self.state}"
+        super().__init__(self.sprite_name)
+        
+          
     def colision(self):
         pass
 
