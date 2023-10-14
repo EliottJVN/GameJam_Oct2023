@@ -19,6 +19,7 @@ FONT_SIZE_STOP_POS = (400, 400)
 BUTONS_POS = {"intro next": (700, 700), "menu jouer": (400, 500), "menu continuer": (400, 600), "menu quit": (400, 700)}
 BUTON_MAP_POS = [(200, 300), (200, 500), (400, 400)]
 
+
 # settings player
 HEALTH = 3
 MAX_HEALTH = 3
