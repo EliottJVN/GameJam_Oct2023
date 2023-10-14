@@ -36,4 +36,4 @@ VECTOR_ENNEMY = (0,0) # Vérifie le déplacement
 LIST_STATE_ENNEMY = ['right','left']
 
 # settings middle image
-LIST_MIDDLE_IMAGE = {'campfire' : ['burning']}
+LIST_MIDDLE_IMAGE = ['campfire_burning']

@@ -18,9 +18,6 @@ class Level:
         self.middleImage = None
         self.rain = False
 
-        # objet
-        self.player = Player()
-
         # text slide stop
         self.fontStop = pygame.font.SysFont("comicsansms", FONT_SIZE_STOP)
         self.textStop = self.fontStop.render("PRESS SPACE", True, "black")
@@ -30,6 +27,9 @@ class Level:
         self.all_sprite = pygame.sprite.Group()
         self.sprite_enemies = pygame.sprite.Group()
         self.collide_sprite = pygame.sprite.Group()
+
+        # objet
+        self.player = Player(self.sprite_enemies, self.collide_sprite)
 
         self.all_sprite.add(self.player)
 
@@ -47,7 +47,9 @@ class Level:
             self.rain = True
 
             # middle image
-            self.middleImage = Campfire("campfire", "burning", LIST_MIDDLE_IMAGE['campfire'])
+            self.middleImage = Campfire("middle_image", "campfire_burning", LIST_MIDDLE_IMAGE)
+            self.collide_sprite.add(self.middleImage)
+            self.all_sprite.add(self.middleImage)
 
             #player
             self.player.slide = True
@@ -62,15 +64,15 @@ class Level:
     # reset tout les groupes/attributs
     def win(self):
 
+        self.all_sprite.clear()
+        self.sprite_enemies.clear()
+
         self.levelName = None
         self.image = None
         self.rain = False
         self.middleImage = None
 
-        self.player.slide = False
-
-        self.all_sprite.clear()
-        self.sprite_enemies.clear()
+        self.player.slide = False 
 
 
     def update(self):
@@ -82,16 +84,22 @@ class Level:
 
 
     def run(self):
+        
+        #verifie bien niveau avec image de fond (pour niveau par encore finit)
+        if self.image:
+            #fond
+            self.screen.blit(self.image, (0, 0))
 
-        #fond
-        self.screen.blit(self.image, (0, 0))
+            #draw sprite
+            self.all_sprite.draw(self.screen)
 
-        #draw sprite
-        self.all_sprite.draw(self.screen)
+            #update ce qui se passe et draw au dessus player
+            self.update()
 
-        #update ce qui se passe et draw au dessus player
-        self.update()
-
-        #update sprite
-        self.all_sprite.update()
+            #update sprite
+            self.all_sprite.update()
+        
+        #sinon ecran noir
+        else:
+            self.screen.fill('black')
         

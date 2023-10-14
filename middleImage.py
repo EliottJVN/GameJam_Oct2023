@@ -8,14 +8,13 @@ class Middle_Image(Sprite_Animation):
 
         # animation burning
         self.state = state
-        super().__init__(name,self.state,list_state, fps = 0.15)
+        super().__init__(name,self.state,list_state, scale=2, fps = 0.15)
 
         self.rect = self.image.get_rect()
         self.rect.center = (400, 400)
 
         # attributs
         self.burning = False
-        self.inventory = {'stick' : 0, 'rock' : 0}
 
 
 class Campfire(Middle_Image):
@@ -26,6 +25,8 @@ class Campfire(Middle_Image):
 
         # attributs
         self.isBurning = False
+        self.stick = 0
 
         # "animation" building
-        self.list_images = [pygame.image.load(f"assets/images/campfire/campfire_building/campfire_building{i}.png").convert_alpha() for i in range(6)]
+        self.list_images = [pygame.transform.scale_by(pygame.image.load(f"assets/images/middle_image/middle_image_campfire_building/middle_image_campfire_building{i}.png").convert_alpha(), 2) for i in range(6)]
+        self.image = self.list_images[0]
