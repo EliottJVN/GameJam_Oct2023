@@ -2,7 +2,6 @@ import pygame
 from settings import *
 from button import Bouton_Image
 
-print(pygame.font.get_fonts())
 
 class Menu:
 

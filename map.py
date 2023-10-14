@@ -48,7 +48,22 @@ class Map:
             self.level12.image = pygame.transform.scale_by(pygame.image.load("assets/images/played_button/played_button0.png").convert_alpha(), 2)
 
         elif self.level2.check_click():
-            pass
+            self.level2.clickable = False
+            self.level2.survolable = False
+            self.level2.image = pygame.transform.scale_by(pygame.image.load("assets/images/played_button/played_button0.png").convert_alpha(), 2)
+
+        # checque si les 2 niveaux sont joué ou pas
+        if not self.level11.clickable and not self.level12.clickable:
+            if self.level2.image_path == "assets/images/not_yet_button/not_yet_button0.png":
+                self.level2.clickable = True
+                self.level2.survolable = True
+
+                self.level2.image_path = "assets/images/playable_button/playable_button0.png"
+                self.level2.image_path_survolee = "assets/images/playable_button/playable_button2.png"
+
+                self.level2.images_animation = [pygame.transform.scale_by(pygame.image.load(self.level2.image_path).convert_alpha(), 2),
+                                            pygame.transform.scale_by(pygame.image.load(self.level2.image_path_survolee).convert_alpha(), 2)]
+                self.level2.image = self.level2.images_animation[0]
 
 
     def run(self):
