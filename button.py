@@ -5,7 +5,7 @@ import pygame
 class Bouton_Image(pygame.sprite.Sprite):
 
     #importe l'image la redimensionne et lui donne une position
-    def __init__(self, coordonee, image_path, group = None, clickable = False, survolable = False, image_path_survolee = None, resize = None, point_position = "topleft", name = None):
+    def __init__(self, coordonee, image_path, group = None, clickable = False, survolable = False, image_path_survolee = None, resize = None, point_position = "center", name = None):
 
         if group != None: 
             super().__init__(group)
@@ -48,7 +48,7 @@ class Bouton_Image(pygame.sprite.Sprite):
     def resize_image(self, size = None):
 
         if size:
-            self.image = pygame.transform.smoothscale(self.image, size)
+            self.image = pygame.transform.scale_by(self.image, size)
             self.rect = self.image.get_rect(center = self.coordonee)
         else:
             self.image = pygame.image.load(self.image_path).convert_alpha()

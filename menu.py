@@ -24,7 +24,11 @@ class Menu:
         self.textTitle_rect = self.textTitle.get_rect(center = FONT_SIZE_TITLE_POS)
 
         # bouton
-        self.nextButton = Bouton_Image(BUTONS_POS["intro next"], "assets/images/target.png", clickable=True)
+        self.nextButton = Bouton_Image(BUTONS_POS["intro next"], "assets/images/continue_button/export_button0.png", 
+                                       clickable=True, 
+                                       survolable = True, 
+                                       image_path_survolee="assets/images/continue_button/export_button2.png",
+                                       resize = 20)
 
         self.playButton = Bouton_Image(BUTONS_POS["menu jouer"], "assets/images/target.png", clickable=True, group = self.all_buttons_menu)
         self.continueButton = Bouton_Image(BUTONS_POS["menu continuer"], "assets/images/target.png", clickable=True, group = self.all_buttons_menu)
