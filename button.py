@@ -30,7 +30,7 @@ class Bouton_Image(pygame.sprite.Sprite):
                                          pygame.transform.scale_by(pygame.image.load(self.image_path_survolee).convert_alpha(), resize)]
                 self.image = self.images_animation[0]
         else:
-            self.image = pygame.image.load(self.image_path).convert_alpha()
+            self.image = pygame.transform.scale_by(pygame.image.load(self.image_path).convert_alpha(), resize)
 
         if point_position == "topleft": self.rect = self.image.get_rect(topleft = self.coordonee)
         elif point_position == "center": self.rect = self.image.get_rect(center = self.coordonee)

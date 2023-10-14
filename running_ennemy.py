@@ -3,14 +3,13 @@ from settings import *
 from sprite_animation import Sprite_Animation
 
 class Running_Ennemy(Sprite_Animation):
-    def ___init__(self):
-        super.__init__("r_ennemy")
+    def ___init__(self, state):
+        super.__init__("goat")
         
-        # Création des attributs par défaut du joueur
-        self.health = health_ennemy
-        self.max_health = max_health_ennemy
-        self.velocity = velocity_ennemy
-        self.vector = pygame.math.Vector2(vector_ennemy) # Vérifie le déplacement
+        # Création des attributs par défaut de la chevre
+        self.state = state
+        self.velocity = VELOCITY_ENNEMY
+        self.vector = pygame.math.Vector2(VECTOR_ENNEMY) # Vérifie le déplacement
 
         # Création du rectangle
         self.rect = self.image.get_rect()
@@ -18,7 +17,7 @@ class Running_Ennemy(Sprite_Animation):
         self.rect.y = 0
     
     def update(self):
-        self.animate(self.vector)
+        self.animate(self, self.vector,self.state)
     
     def colision(self):
         pass
