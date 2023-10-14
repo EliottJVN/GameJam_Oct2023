@@ -1,4 +1,5 @@
 import pygame
+from sprite_animation import Sprite_Animation
 
 
 
@@ -72,8 +73,14 @@ class Bouton_Image(pygame.sprite.Sprite):
 
 
 # animation bouton press !!!!!!!!!!!!
-class Space_Buton(Bouton_Image):
+class Space_Buton(Sprite_Animation):
 
-    def __init__(self, coordonee, image_path, group=None, clickable=False, survolable=False, image_path_survolee=None, resize=None, point_position="center", name=None):
+    def __init__(self):
 
-        super().__init__(coordonee, image_path, group, clickable, survolable, image_path_survolee, resize, point_position, name)
+        super().__init__("button_space",'animate',['animate'], 4, fps = 0.5)
+
+        self.rect = self.image.get_rect()
+        self.rect.center = (400, 400)
+
+    def update(self):
+        Sprite_Animation.animate(self, pygame.math.Vector2(1,1), 'animate')
