@@ -3,8 +3,9 @@ from settings import *
 from sprite_animation import Sprite_Animation
 
 class Player(Sprite_Animation):
-    def ___init__(self):
-        super.__init__("player")
+    def __init__(self):
+        print("Player")
+        super().__init__("player") 
         
         # Création des attributs par défaut du joueur
         self.health = health
