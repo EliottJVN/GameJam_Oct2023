@@ -38,7 +38,8 @@ class Player(Sprite_Animation):
             self.vector.x = -1
             self.vector.y = 0
                 
-
+    def colision(self):
+        pass
 
 
 
