@@ -1,6 +1,7 @@
 import pygame
 from player import Player
 from settings import *
+from middleImage import *
 
 
 class Level:
@@ -13,7 +14,8 @@ class Level:
         self.image = None
 
         # attribu str "11", "12", "2"
-        self.level_name = None
+        self.levelName = None
+        self.middleImage = None
         self.rain = False
 
         # objet
@@ -27,38 +29,43 @@ class Level:
         #group
         self.all_sprite = pygame.sprite.Group()
         self.sprite_enemies = pygame.sprite.Group()
+        self.collide_sprite = pygame.sprite.Group()
 
         self.all_sprite.add(self.player)
 
     
     # setup level en fonction niveau
-    def setup(self, level_name):
+    def setup(self, levelName):
 
         # crée bon setup pour le niveau
-        self.level_name = level_name
+        self.levelName = levelName
 
-        if self.level_name == "11":
+        if self.levelName == "11":
             # fond
             self.image = pygame.image.load("assets/images/backgrounds/rain.png")
             self.image = pygame.transform.scale(self.image, (800, 800))        
             self.rain = True
 
+            # middle image
+            self.middleImage = Campfire("campfire", "burning", LIST_MIDDLE_IMAGE['campfire'])
+
             #player
             self.player.slide = True
 
-        elif self.level_name == "12":
+        elif self.levelName == "12":
             pass
 
-        elif self.level_name == "11":
+        elif self.levelName == "11":
             pass
 
     
     # reset tout les groupes/attributs
     def win(self):
 
-        self.level_name = None
+        self.levelName = None
         self.image = None
         self.rain = False
+        self.middleImage = None
 
         self.player.slide = False
 
@@ -69,7 +76,7 @@ class Level:
     def update(self):
 
         # pour afficher SPACE pour frame perfect stop
-        if self.level_name == "11":
+        if self.levelName == "11":
             if self.player.slideActive and 450 < pygame.time.get_ticks() - self.player.curentTimeSlide < 700:
                 self.screen.blit(self.textStop, self.textStop_rect)
 

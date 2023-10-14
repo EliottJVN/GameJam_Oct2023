@@ -71,7 +71,7 @@ class Main():
         self.level.run()
 
         # si le niveau est finit on repasse sur la map
-        if not self.level.level_name:
+        if not self.level.levelName:
             self.game_state = "map"
 
 

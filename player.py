@@ -93,7 +93,6 @@ class Player(Sprite_Animation):
             elif self.vector.magnitude() > 0:
                 self.slideActive = True
                 self.curentTimeSlide = pygame.time.get_ticks()
-                print("not working")
 
             # le player est arrété
             else:
