@@ -2,28 +2,40 @@ import pygame
 
 class Main():
     def __init__(self):
+
         pygame.init()
+    
+        self.display = pygame.display
+        self.display.set_mode((500,500), pygame.RESIZABLE)
+        self.display.set_caption("GameJam 2023")
+
+        self.game_state = "intro"
+        self.running = 1
+        self.clock = pygame.time.Clock()
         
-        display = pygame.display
-        display.set_mode((500,500), pygame.RESIZABLE)
-        display.set_caption("GameJam 2023")
+    
+    def intro(self):
+            
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+                pygame.quit()
+
+
+    def game_State_Management(self):
         
-        clock = pygame.time.Clock()
+        while self.running:
+             
+            if self.game_state == "intro":
+                self.intro()
 
-        # Récupère la taille des écrans sous forme d'une liste de tuples
-        screen = display.get_desktop_sizes()
+        pygame.display.update()
+        self.clock.tick(60)
 
-        running = True
-        while running:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    running = False
-                    pygame.quit()
 
-              
-            display.flip()
-            clock.tick(60)    # Running at 60 FPS
 
+main = Main()
 
 if __name__ == "__main__":
-    Main()
+
+    main.game_State_Management()
