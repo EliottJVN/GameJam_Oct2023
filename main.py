@@ -1,6 +1,7 @@
 import pygame
 from settings import *
 from menu import Menu
+from level import Level
 
 class Main():
     def __init__(self):
@@ -20,6 +21,7 @@ class Main():
 
         # création des objets
         self.menu = Menu()
+        self.level = Level()
         
     
     # event loop de intro + menu
@@ -30,7 +32,24 @@ class Main():
                 self.running = False
                 pygame.quit()
 
-        self.menu.run()   
+        self.menu.run()
+        
+        if self.menu.clickJouer:
+            self.game_state = "level"
+        if self.menu.quit:
+            self.running = False
+            pygame.quit()
+
+
+    # event loop de level
+    def levelLoop(self):
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.running = False
+                pygame.quit()
+
+        self.level.run()
 
 
     def game_State_Management(self):
@@ -39,6 +58,8 @@ class Main():
              
             if self.game_state == "intro":
                 self.intro()
+            elif self.game_state == "level":
+                self.levelLoop()
 
             pygame.display.update()
             self.clock.tick(FPS)

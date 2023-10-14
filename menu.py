@@ -12,7 +12,7 @@ class Menu:
         self.screen = pygame.display.get_surface()
 
         # groups
-        self.all_sprites = pygame.sprite.Group()
+        self.all_buttons_menu = pygame.sprite.Group()
 
         # text
         self.fontIntro = pygame.font.SysFont("comicsansms", FONT_SIZE_INTRO)
@@ -24,11 +24,16 @@ class Menu:
         self.textTitle_rect = self.textTitle.get_rect(center = FONT_SIZE_TITLE_POS)
 
         # bouton
-        self.nextButton = Bouton_Image((300, 300), "assets/target.png", clickable=True)
+        self.nextButton = Bouton_Image(BUTONS_POS["intro next"], "assets/target.png", clickable=True)
 
-        # intro actif ou nom
+        self.playButton = Bouton_Image(BUTONS_POS["menu jouer"], "assets/target.png", clickable=True, group = self.all_buttons_menu)
+        self.continueButton = Bouton_Image(BUTONS_POS["menu continuer"], "assets/target.png", clickable=True, group = self.all_buttons_menu)
+        self.quitButton = Bouton_Image(BUTONS_POS["menu quit"], "assets/target.png", clickable=True, group = self.all_buttons_menu)
+
+        # iattributs
         self.introActive = True
-
+        self.clickJouer = False
+        self.quit = False
 
 
     # gere l'intro
@@ -36,19 +41,29 @@ class Menu:
         
         self.screen.fill("green")
         self.screen.blit(self.textIntro, self.textIntro_rect)
+        self.screen.blit(self.nextButton.image, self.nextButton.rect)
         
         # bouton pour passer
         if self.nextButton.check_click():
             self.introActive = False
 
 
+
     # gere le menu
     def menuAffiche(self):
         
-        self.fill("red")
-        self.screen(self.textTitle, self.textTitle_rect)
+        self.screen.fill("blue")
+        self.screen.blit(self.textTitle, self.textTitle_rect)
 
-        # bouton
+        self.all_buttons_menu.draw(self.screen)
+
+        # boutons
+        if self.playButton.check_click():
+            self.clickJouer = True
+        if self.continueButton.check_click():
+            pass
+        if self.quitButton.check_click():
+            self.quit = True
 
 
     def run(self):
