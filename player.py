@@ -19,8 +19,9 @@ class Player(Sprite_Animation):
         self.rect = self.image.get_rect(center=(X_PLAYER,Y_PLAYER))
     
     def update(self):
-        Sprite_Animation.animate(self, self.vector,self.state)
         self.mouvement()
+        Sprite_Animation.animate(self, self.vector,self.state)
+        
     
     def mouvement(self):
         # Récupere un dico des clés pressées.
@@ -45,11 +46,6 @@ class Player(Sprite_Animation):
             self.vector.y = 0
         else:
             self.state = 'idle'
-        
-        # Reload des nouvelles animations
-        # self.sprite_name = f"player_{self.state}"
-        # super().__init__(self.sprite_name)
-
 
     def colision(self):
         pass
