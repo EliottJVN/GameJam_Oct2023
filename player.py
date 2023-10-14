@@ -8,18 +8,17 @@ class Player(Sprite_Animation):
         super().__init__("player",self.state) 
         # Création des attributs par défaut du joueur
         
-        self.health = health
-        self.max_health = max_health
-        self.velocity = velocity_player
-        self.vector = pygame.math.Vector2(vector) # Vérifie le déplacement
-        self.slide = slide
+        self.health = HEALTH
+        self.max_health = MAX_HEALTH
+        self.velocity = VELOCITY_PLAYER
+        self.vector = pygame.math.Vector2(VECTOR) # Vérifie le déplacement
+        self.slide = SLIDE
         self.state = STATE
 
         # Création du rectangle
         self.rect = self.image.get_rect(center=(X_PLAYER,Y_PLAYER))
     
     def update(self):
-        print(self.sprite_name)
         Sprite_Animation.animate(self, self.vector)
         self.mouvement()
     
