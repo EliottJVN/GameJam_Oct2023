@@ -38,3 +38,6 @@ LIST_STATE_ENNEMY = ['right','left']
 
 # settings middle image
 LIST_MIDDLE_IMAGE = ['campfire_burning']
+
+# settings collectable
+SCALE_COLLECTABLE = 3
