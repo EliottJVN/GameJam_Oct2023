@@ -53,6 +53,12 @@ class Main():
 
         self.map.run()
 
+        #si un bouton a été cliqué alors lancer la création d'un niveau
+        if self.map.niveau:
+            self.level.setup(self.map.niveau)
+            self.game_state = "level"
+            self.map.niveau = None
+
 
     # event loop de level
     def levelLoop(self):
@@ -63,6 +69,10 @@ class Main():
                 pygame.quit()
 
         self.level.run()
+
+        # si le niveau est finit on repasse sur la map
+        if not self.level.level_name:
+            self.game_state = "map"
 
 
     def game_State_Management(self):
