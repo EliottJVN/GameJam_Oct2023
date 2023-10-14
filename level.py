@@ -33,8 +33,9 @@ class Level:
         self.player = Player(self.sprite_enemies, self.collide_sprite)
     
         for i in range(5):
-            stick = Collectable(POSITION_STICK[i],"stick")
+            stick = Collectable(POSITION_STICK[i],"stick",(self.collide_sprite))
             self.sprite_sticks.add(stick)
+            self.collide_sprite.add(stick)
             self.all_sprite.add(stick)
 
         
