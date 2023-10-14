@@ -4,6 +4,7 @@ from collectable import Collectable
 from settings import *
 from middleImage import *
 from button import Space_Buton
+from rain import Rain
 
 
 class Level:
@@ -18,7 +19,6 @@ class Level:
         # attribu str "11", "12", "2"
         self.levelName = None
         self.middleImage = None
-        self.rain = False
 
         # button space
         self.spaceButon = Space_Buton()
@@ -31,6 +31,7 @@ class Level:
 
         # objet
         self.player = Player(self.sprite_enemies, self.collide_sprite)
+<<<<<<< HEAD
     
         for i in range(5):
             stick = Collectable(POSITION_STICK[i],"stick",(self.collide_sprite))
@@ -38,7 +39,12 @@ class Level:
             self.collide_sprite.add(stick)
             self.all_sprite.add(stick)
 
+=======
+        self.collectable = Collectable((200,200),"stick")
+        self.rain = Rain(self.all_sprite)
+>>>>>>> 4c454144409ba0a08720403f0c52a65b7f59d0f6
         
+        self.all_sprite.add(self.collectable)
         self.all_sprite.add(self.player)        
 
     
@@ -52,7 +58,6 @@ class Level:
             # fond
             self.image = pygame.image.load("assets/images/backgrounds/rain.png")
             self.image = pygame.transform.scale(self.image, (800, 800))        
-            self.rain = True
 
             # middle image
             self.middleImage = Campfire("middle_image", "campfire_burning", LIST_MIDDLE_IMAGE)
@@ -65,7 +70,7 @@ class Level:
         elif self.levelName == "12":
             pass
 
-        elif self.levelName == "11":
+        elif self.levelName == "2":
             pass
 
     
@@ -77,7 +82,6 @@ class Level:
 
         self.levelName = None
         self.image = None
-        self.rain = False
         self.middleImage = None
 
         self.player.slide = False 
@@ -85,12 +89,16 @@ class Level:
 
     def update(self):
 
-        # pour afficher SPACE pour frame perfect stop
         if self.levelName == "11":
+
+            # pour afficher SPACE pour frame perfect stop
             if self.player.slideActive and 450 < pygame.time.get_ticks() - self.player.curentTimeSlide < 700:
                 self.all_sprite.add(self.spaceButon)
             else:
                 self.spaceButon.kill()
+
+            # pour la pluie
+            self.rain.update()
 
 
     def run(self):
