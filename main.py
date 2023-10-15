@@ -81,7 +81,7 @@ class Main():
             self.__init__()
 
 
-    # animate loo
+    # animate loop
     def animatedLoop(self):
 
         for event in pygame.event.get(): 
