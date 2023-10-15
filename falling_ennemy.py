@@ -8,12 +8,14 @@ class Falling_Ennemy(Sprite_Animation):
         super().__init__(sprite_name,self.state,LIST_STATE_F_ENNEMY, SCALE_F_ENNEMY)
         # Création du rectangle
         self.rect = self.image.get_rect()
+        self.save_rect = self.rect
         self.rect.center = coord
         self.save_coord = coord
         self.timer = pygame.time.get_ticks()
+        print(self.timer)
         
-    def update(self):
-        if pygame.time.get_ticks() - self.timer >= 3000 and self.state == 'hit':
+    def update(self):      
+        if pygame.time.get_ticks() - self.timer >= WAIT and self.state == 'hit':
             Sprite_Animation.animate(self, vect=pygame.math.Vector2((1,1)),key = self.state)
             self.rect = self.image.get_rect()
             self.rect.midbottom = self.save_coord

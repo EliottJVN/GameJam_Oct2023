@@ -219,6 +219,15 @@ class Player(Sprite_Animation):
                             self.inventory = sprite.type
                             sprite.kill()
                 
+                elif sprite.sprite_name == "eclair" and pygame.time.get_ticks() - sprite.timer >= WAIT:
+                    if self.health > 0:
+                        self.health -= 1
+                        print(self.health)
+                        sprite.kill()
+                    else:
+                        print('game_over')
+                        self.health = MAX_HEALTH
+                    
                 else: goesInLoop = False
 
             elif self.afficher_pickable and not goesInLoop:

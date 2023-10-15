@@ -42,11 +42,8 @@ LIST_STATE_ENNEMY = ['right','left']
 # settings falling ENNEMY
 LIST_STATE_F_ENNEMY = ['hit','idle']
 SCALE_F_ENNEMY = 2.5
-APPARITION = [(rd.randint(120,300),rd.randint(120,300)),
-              (rd.randint(500,680),rd.randint(120,300)),
-              (rd.randint(120,300),rd.randint(300,500)),
-              (rd.randint(120,300),rd.randint(500,680)),
-              (rd.randint(500,680),rd.randint(500,680))] # distance pixel de chaque objet
+WAIT = 1000
+REFRESH = 2000
 
 # settings middle image
 LIST_MIDDLE_IMAGE = ['campfire_burning','campfire_building']
