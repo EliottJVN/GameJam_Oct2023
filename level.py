@@ -3,7 +3,7 @@ from player import Player
 from collectable import Collectable
 from settings import *
 from middleImage import *
-from button import Space_Buton
+from button import Space_Buton, E_Buton
 from rain import Rain
 
 
@@ -22,6 +22,7 @@ class Level:
 
         # button space
         self.spaceButon = Space_Buton()
+        self.e_button = E_Buton()
 
         #group
         self.all_sprite = pygame.sprite.Group()
@@ -57,7 +58,7 @@ class Level:
             self.image = pygame.transform.scale(self.image, (800, 800))        
 
             # middle image
-            self.middleImage = Campfire("middle_image", "campfire_burning", LIST_MIDDLE_IMAGE)
+            self.middleImage = Campfire("middle_image", "campfire_building", LIST_MIDDLE_IMAGE)
             self.collide_sprite.add(self.middleImage)
             self.all_sprite.add(self.middleImage)
 
@@ -88,14 +89,23 @@ class Level:
 
         if self.levelName == "11":
 
+            # pour la pluie
+            self.rain.update()
+            
             # pour afficher SPACE pour frame perfect stop
             if self.player.slideActive and 450 < pygame.time.get_ticks() - self.player.curentTimeSlide < 700:
                 self.all_sprite.add(self.spaceButon)
             else:
                 self.spaceButon.kill()
 
-            # pour la pluie
-            self.rain.update()
+        # si le joueur peur récupérer ou déposer un objet
+        if self.player.afficher_pickable:
+            self.all_sprite.add(self.e_button)
+            self.e_button.rect.center = (self.player.rect.centerx, self.player.rect.centery-60)
+        else:
+            if self.e_button in self.all_sprite:
+                self.e_button.kill()
+
 
 
     def run(self):

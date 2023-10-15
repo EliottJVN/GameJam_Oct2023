@@ -12,8 +12,10 @@ class Player(Sprite_Animation):
         self.health = HEALTH
         self.max_health = MAX_HEALTH
         self.velocity = VELOCITY_PLAYER
+        self.inventory = None
         self.vector = pygame.math.Vector2(VECTOR) # Vérifie le déplacement
         self.state = STATE
+        self.afficher_pickable = False
 
         # attributs joueur slide
         self.slide = SLIDE
@@ -187,14 +189,34 @@ class Player(Sprite_Animation):
 
     def collision(self):
 
+        goesInLoop = False
+
         for sprite in self.collide_sprite.sprites():
             if sprite.rect.colliderect(self.rect):
                 # collide middleimage
                 if sprite.sprite_name == "middle_image":
                     self.test_collision(sprite)
+                    if self.inventory != None:
+                        sprite.current_img += 1
+                        sprite.image = sprite.images[sprite.state][sprite.current_img]
+                        self.inventory = None
+
                 
                 elif sprite.sprite_name == "collectable":
-                    self.test_collision(sprite)
+                    self.afficher_pickable = True
+                    goesInLoop = True
+                    key = pygame.key.get_pressed()
+                    # En fonction des clés mises à jour du vecteur position.
+                    if key[pygame.K_e]:
+                        if self.inventory == None:
+                            self.inventory = sprite.type
+                            sprite.kill()
+                
+                else: goesInLoop = False
+
+            elif self.afficher_pickable and not goesInLoop:
+                self.afficher_pickable = False
+
 
     def test_collision(self,sprite):
         if self.vector.x > 0:
