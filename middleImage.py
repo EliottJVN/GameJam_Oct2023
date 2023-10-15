@@ -9,7 +9,7 @@ class Middle_Image(Sprite_Animation):
         # animation burning
         self.state = state
         super().__init__(name,self.state,list_state, scale=2, fps = 0.15)
-        self.inventory = {}
+        self.inventory = {"stick": 0, "stone": 0}
         self.rect = self.image.get_rect()
         self.rect.center = (400, 400)
 

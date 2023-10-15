@@ -204,8 +204,8 @@ class Player(Sprite_Animation):
                         sprite.current_img += 1
                         sprite.image = sprite.images[sprite.state][sprite.current_img]
                         self.inventory = None
-
-                
+                        sprite.inventory["stick"] += 1
+             
                 elif sprite.sprite_name == "collectable":
                     self.afficher_pickable = True
                     goesInLoop = True
