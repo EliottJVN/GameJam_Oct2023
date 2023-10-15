@@ -41,7 +41,7 @@ LIST_STATE_ENNEMY = ['right','left']
 
 # settings falling ENNEMY
 LIST_STATE_F_ENNEMY = ['hit','idle']
-SCALE_F_ENNEMY = 0.2
+SCALE_F_ENNEMY = 2.5
 APPARITION = [(rd.randint(120,300),rd.randint(120,300)),
               (rd.randint(500,680),rd.randint(120,300)),
               (rd.randint(120,300),rd.randint(300,500)),
