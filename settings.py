@@ -48,7 +48,7 @@ SCALE_ENNEMY = 3
 # settings falling ENNEMY
 LIST_STATE_F_ENNEMY = ['hit','idle']
 SCALE_F_ENNEMY = [2.5,2.5]
-FPS_ENNEMY = [0.2,2]
+FPS_ENNEMY = [1,0.25]
 WAIT = 500
 REFRESH = 2000
 
@@ -58,5 +58,5 @@ LIST_MIDDLE_IMAGE = ['campfire_burning','campfire_building', "crafing_pickaxe", 
 # settings collectable
 SCALE_COLLECTABLE = 3
 POSITION_STICK = [(100,100),(700,100), (100,700), (700,700),(400,200)]
-POSITION_STICK_L2 = [(120,101),(710,769), (350,710)]
-POSITION_STONE = [(710,101),(101,760), (350,90)]
+POSITION_STICK_L2 = [(140,121),(690,690), (410,715)]
+POSITION_STONE = [(690,121),(121,695), (350,110)]

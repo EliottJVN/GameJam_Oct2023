@@ -191,13 +191,18 @@ class Animated_Win():
         self.screen = pygame.display.get_surface()
         self.end = False
 
-        # 11
-        self.image_campfire = pygame.transform.scale_by(pygame.image.load(f"assets/images/middle_image/middle_image_campfire_building/middle_image_campfire_building5.png").convert_alpha(), 2)
+        #l1
+        self.image_campfire =  pygame.transform.scale_by(pygame.image.load(f"assets/images/middle_image/middle_image_campfire_building/middle_image_campfire_building5.png").convert_alpha(), 2)
         self.image_rectF = self.image_campfire.get_rect()
         self.image_rectF.center = (400, 400)
         self.list_images_campfire = [pygame.transform.scale_by(pygame.image.load(f"assets/images/middle_image/middle_image_campfire_burning/middle_image_campfire_burning{i}.png").convert_alpha(), 2) for i in range(4)]
         self.list_images_eclair = [pygame.transform.scale_by(pygame.image.load(f"assets/images/eclair/eclair_hit/eclair_hit{i}.png").convert_alpha(), 2.5) for i in range(4)]
         self.img11 = pygame.transform.scale(pygame.image.load(f"assets/images/backgrounds/rain.png").convert_alpha(),(800,800))
+        self.img12 = pygame.transform.scale(pygame.image.load(f"assets/images/backgrounds/day.png").convert_alpha(),(800,800))
+
+        # 12
+        self.image_crafting_tables =  [pygame.transform.scale_by(pygame.image.load(f"assets/images/middle_image/middle_image_crafting_pickaxe/middle_image_crafting_pickaxe{i}.png").convert_alpha(), 3) for i in range(4)]
+        self.imageCraft = self.image_crafting_tables[0]
 
         self.index = 0
         self.image = self.list_images_eclair[self.index]
@@ -227,7 +232,25 @@ class Animated_Win():
                     self.index += 0.2
                 else:
                     self.index = 0
-                self.screen.blit(self.image, self.image_rectF)
+                self.screen.blit(self.image, (self.image_rectF.topleft[0] - 2, self.image_rectF.topleft[1] - 30))
 
             else:
+                self.end = True
+
+        if levelname == "12":
+            # animation
+            self.screen.blit(self.img12, (0,0))
+            self.screen.blit(self.imageCraft, (350,380))
+
+            if 300 < pygame.time.get_ticks() - self.startAnimationTimer < 2500:
+                if self.index < len(self.list_images_eclair):
+                    self.image = self.image_crafting_tables[int(self.index)]
+                    self.index += 0.2
+                else:
+                    self.index = 3
+                image_rect = self.image.get_rect()
+                image_rect.topleft = (350,380)
+                self.screen.blit(self.image, image_rect)
+
+            elif pygame.time.get_ticks() - self.startAnimationTimer > 2500:
                 self.end = True
