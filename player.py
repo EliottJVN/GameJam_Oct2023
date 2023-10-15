@@ -196,6 +196,11 @@ class Player(Sprite_Animation):
                 # collide middleimage
                 if sprite.sprite_name == "middle_image":
                     self.test_collision(sprite)
+                    if self.inventory != None:
+                        sprite.current_img += 1
+                        sprite.image = sprite.images[sprite.state][sprite.current_img]
+                        self.inventory = None
+
                 
                 elif sprite.sprite_name == "collectable":
                     self.afficher_pickable = True
