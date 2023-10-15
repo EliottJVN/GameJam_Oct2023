@@ -2,6 +2,7 @@ import pygame
 from settings import *
 from sprite_animation import Sprite_Animation
 
+
 class Player(Sprite_Animation):
 
     def __init__(self, sprite_enemies, collide_sprite):

@@ -21,6 +21,7 @@ class Falling_Ennemy(Sprite_Animation):
         
     def update(self):      
         if pygame.time.get_ticks() - self.timer >= WAIT and self.state == 'hit':
+
             Sprite_Animation.animate(self, vect=pygame.math.Vector2((1,1)),key = self.state)
             self.rect = self.image.get_rect()
             self.rect.midbottom = self.save_coord

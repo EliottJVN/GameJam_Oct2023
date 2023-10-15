@@ -16,7 +16,6 @@ class Collectable(Sprite_Animation):
         
         self.image = self.images[type][0]
         self.type = type
-
         # Création du rectangle
         self.rect = self.image.get_rect()
         self.rect.center = pos       

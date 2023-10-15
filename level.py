@@ -8,13 +8,14 @@ from middleImage import *
 from button import Space_Buton, E_Buton
 from rain import Rain
 from ui import UI
+from sound_manager import Sound_Manager
 
 
 class Level:
 
 
     def __init__(self):
-        
+        self.sound_manager = Sound_Manager()
         #attributs pygame
         self.screen = pygame.display.get_surface()
         self.image = None
@@ -48,7 +49,7 @@ class Level:
         self.player = Player(self.sprite_enemies, self.collide_sprite)
         self.ui = UI(self.player.health)
        
-        self.all_sprite.add(self.player)    
+        self.all_sprite.add(self.player) 
         
 
     
@@ -58,9 +59,11 @@ class Level:
         # crée bon setup pour le niveau
         self.levelName = levelName
         self.all_sprite.add(self.player)
+
         self.won = False
 
         if self.levelName == "11":
+            self.sound_manager.play_music('niv')
             # fond
             self.image = pygame.image.load("assets/images/backgrounds/rain.png")
             self.image = pygame.transform.scale(self.image, (800, 800))        
@@ -89,6 +92,7 @@ class Level:
         ## Setup niv 1.2
         elif self.levelName == "12":
             # fond
+            self.sound_manager.play_music('nivbis')
             self.image = pygame.image.load("assets/images/backgrounds/day.png")
             self.image = pygame.transform.scale(self.image, (800, 800))        
 
@@ -154,11 +158,19 @@ class Level:
             self.screen.blit(self.textNbrStick, self.textNbrStick_rect)
 
             # Eclair
+            self.sound_manager.play('eclair')
             if pygame.time.get_ticks() - self.eclair.timer >= REFRESH:
                 for sprite in self.sprite_falling_enemies:
                     sprite.kill()
                 self.create_eclairs()
-                        
+        
+        
+        elif self.levelName == "12":
+            self.ui.update(self.player.health)
+            self.screen.blit(self.ui.image,self.ui.rect)
+            if 300<self.goat.rect.centerx<500:
+                self.sound_manager.play('goat')
+                  
         # si le joueur peur récupérer ou déposer un objet
         if self.player.afficher_pickable:
             self.all_sprite.add(self.e_button)
