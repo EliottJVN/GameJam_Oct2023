@@ -70,6 +70,7 @@ class Level:
 
             # middle image
             self.middleImage = Campfire("middle_image", "campfire_building", LIST_MIDDLE_IMAGE)
+            self.middleImage.inventory = {"stick": 0, "stone": 0}
             self.collide_sprite.add(self.middleImage)
             self.all_sprite.add(self.middleImage)
 
@@ -134,7 +135,7 @@ class Level:
     # reset tout les groupes/attributs
     def win(self):
 
-        if self.levelName == "11" and self.middleImage.inventory["stick"] == 5:
+        if self.levelName == "11" and not self.sprite_sticks and not self.player.inventory:
                     
             self.all_sprite.empty()
             self.sprite_sticks.empty()
@@ -149,7 +150,7 @@ class Level:
 
             self.player.delete()
 
-        if self.levelName == "12" and self.middleImage.inventory["stick"] == 3 and self.middleImage.inventory["stone"] == 3:
+        if self.levelName == "12" and not self.sprite_sticks and not self.player.inventory:
 
             self.all_sprite.empty()
             self.sprite_sticks.empty()

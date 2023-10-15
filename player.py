@@ -244,8 +244,9 @@ class Player(Sprite_Animation):
                         if self.inventory != None:
                             sprite.current_img += 1
                             sprite.image = sprite.images[sprite.state][sprite.current_img]
+                            sprite.inventory[self.inventory] += 1
                             self.inventory = None
-                            sprite.inventory["stick"] += 1
+
                     else:
                         self.test_collision(sprite)
                         if self.inventory != None:
