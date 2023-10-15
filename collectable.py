@@ -24,4 +24,4 @@ class Collectable(Sprite_Animation):
 
     def update(self):
         Sprite_Animation.animate(self, key = self.type)
-    
+     
