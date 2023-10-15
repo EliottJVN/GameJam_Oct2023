@@ -106,3 +106,39 @@ class Menu:
             self.intro()
         else:
             self.menuAffiche()
+
+
+class Game_Over():
+
+    def __init__(self):
+
+        # attribut pygame
+        self.screen = pygame.display.get_surface()
+
+        # text
+        self.fontIntro = pygame.font.Font("assets/fonts/Pixeled.ttf", 50)
+        self.textIntro = self.fontIntro.render("G A M E   O V E R", True, "white")
+        self.textIntro_rect = self.textIntro.get_rect(center = (400, 250))
+
+        # bouton
+        self.quitButton = Bouton_Image((400, 550), "assets/images/quit_button/quit_button0.png", 
+                                       clickable=True, 
+                                       survolable = True, 
+                                       image_path_survolee="assets/images/quit_button/quit_button2.png",
+                                       resize = 3)
+
+        # iattributs
+        self.quit = False
+
+
+    def run(self):
+
+        self.screen.fill("black")
+
+        # bouton
+        self.screen.blit(self.quitButton.image, self.quitButton.rect)
+        self.screen.blit(self.textIntro, self.textIntro_rect)
+
+        # bouton pour passer
+        if self.quitButton.check_click():
+            self.quit = True

@@ -110,6 +110,12 @@ class Level:
 
             self.player.delete()
 
+    # reset tout les groupes/attributs
+    def game_over(self):
+
+        if self.player.dead:
+            self.levelName = "RESET"
+
 
     def update(self):
 
@@ -172,6 +178,9 @@ class Level:
 
             # verifie si a win
             self.win()
+
+            # verifie si dead
+            self.game_over()
         
         #sinon ecran noir
         else:
