@@ -236,7 +236,7 @@ class Player(Sprite_Animation):
                             self.dead = True
                             break
 
-            elif sprite.rect.colliderect(self.rect):
+            if sprite.rect.colliderect(self.rect):
                 # collide middleimage
                 if sprite.sprite_name == "middle_image":
                     if hasattr(sprite, "isBurning"):
