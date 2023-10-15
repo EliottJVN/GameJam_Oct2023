@@ -5,7 +5,13 @@ from sprite_animation import Sprite_Animation
 class Falling_Ennemy(Sprite_Animation):
     def __init__(self,sprite_name,coord):
         self.state = 'idle'
-        super().__init__(sprite_name,self.state,LIST_STATE_F_ENNEMY, SCALE_F_ENNEMY)
+        if sprite_name == 'eclair':
+            scale = SCALE_F_ENNEMY[0]
+            fps = FPS_ENNEMY[0]
+        else:
+            scale = SCALE_F_ENNEMY[1]
+            fps = FPS_ENNEMY[1]
+        super().__init__(sprite_name,self.state,LIST_STATE_F_ENNEMY, scale, fps=fps)
         # Création du rectangle
         
         

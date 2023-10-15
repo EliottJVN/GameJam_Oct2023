@@ -84,7 +84,7 @@ class Level:
             self.rain = Rain(self.all_sprite)
             
             # Eclair
-            self.create_eclairs()
+            self.create_eclairs('eclair')
             
             #player
             self.player.slide = True
@@ -181,7 +181,7 @@ class Level:
             if pygame.time.get_ticks() - self.eclair.timer >= REFRESH:
                 for sprite in self.sprite_falling_enemies:
                     sprite.kill()
-                self.create_eclairs()
+                self.create_eclairs('eclair')
         
         
         elif self.levelName == "12":
@@ -189,6 +189,12 @@ class Level:
             self.screen.blit(self.ui.image,self.ui.rect)
             if 300<self.goat.rect.centerx<500:
                 self.sound_manager.play('goat')
+            
+            self.sound_manager.play('crow')
+            if pygame.time.get_ticks() - self.eclair.timer >= REFRESH:
+                for sprite in self.sprite_falling_enemies:
+                    sprite.kill()
+                self.create_eclairs('crow')
                   
 
         # si le joueur peur récupérer ou déposer un objet
