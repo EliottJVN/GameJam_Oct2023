@@ -189,7 +189,7 @@ class Level:
         elif self.levelName == "12":
             self.ui.update(self.player.health)
             self.screen.blit(self.ui.image,self.ui.rect)
-            if 300<self.goat.rect.centerx<500:
+            if 100<self.goat.rect.centerx<700:
                 self.sound_manager.play('goat')
             
             self.sound_manager.play('crow')
