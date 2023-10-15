@@ -142,3 +142,52 @@ class Game_Over():
         # bouton pour passer
         if self.quitButton.check_click():
             self.quit = True
+
+
+class Animated_Win():
+
+    def __init__(self):
+        # attribut pygame
+        self.screen = pygame.display.get_surface()
+        self.end = False
+
+        # 11
+        self.image_campfire = pygame.transform.scale_by(pygame.image.load(f"assets/images/middle_image/middle_image_campfire_building/middle_image_campfire_building5.png").convert_alpha(), 2)
+        self.image_rectF = self.image_campfire.get_rect()
+        self.image_rectF.center = (400, 400)
+        self.list_images_campfire = [pygame.transform.scale_by(pygame.image.load(f"assets/images/middle_image/middle_image_campfire_burning/middle_image_campfire_burning{i}.png").convert_alpha(), 2) for i in range(4)]
+        self.list_images_eclair = [pygame.transform.scale_by(pygame.image.load(f"assets/images/eclair/eclair_hit/eclair_hit{i}.png").convert_alpha(), 2.5) for i in range(4)]
+        self.img11 = pygame.transform.scale(pygame.image.load(f"assets/images/backgrounds/rain.png").convert_alpha(),(800,800))
+
+        self.index = 0
+        self.image = self.list_images_eclair[self.index]
+
+        self.startAnimationTimer = 0
+
+    
+    def run(self, levelname):
+
+        if levelname == "11":
+            # animation
+            self.screen.blit(self.img11, (0,0))
+            self.screen.blit(self.image_campfire, self.image_rectF)
+            if 300 < pygame.time.get_ticks() - self.startAnimationTimer < 950:
+                if self.index < len(self.list_images_eclair):
+                    self.image = self.list_images_eclair[int(self.index)]
+                    self.index += 1
+                else:
+                    self.index = 0
+                image_rect = self.image.get_rect()
+                image_rect.midbottom = self.image_rectF.midbottom
+                self.screen.blit(self.image, image_rect)
+
+            elif pygame.time.get_ticks() - self.startAnimationTimer < 2950:
+                if self.index < len(self.list_images_campfire):
+                    self.image = self.list_images_campfire[int(self.index)]
+                    self.index += 0.2
+                else:
+                    self.index = 0
+                self.screen.blit(self.image, self.image_rectF)
+
+            else:
+                self.end = True
