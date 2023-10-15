@@ -100,7 +100,7 @@ class Level:
         self.image = None
         self.middleImage = None
 
-        self.player.slide = True
+        self.player.delete()
 
 
     def update(self):
