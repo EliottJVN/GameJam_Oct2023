@@ -1,6 +1,7 @@
 import pygame
 from settings import *
 from button import Bouton_Image
+from sprite_animation import Sprite_Animation
 
 
 class Menu:
@@ -21,6 +22,11 @@ class Menu:
         self.fontTitle = pygame.font.Font("assets/fonts/Pixeled.ttf", FONT_SIZE_TITLE)
         self.textTitle = self.fontTitle.render("FLASH MONKEY", True, "black")
         self.textTitle_rect = self.textTitle.get_rect(center = FONT_SIZE_TITLE_POS)
+
+        # intro animation
+        self.index = 0
+        self.images = [pygame.transform.scale_by(pygame.image.load(f'assets/images/intro/intro{i}.png'), 4) for i in range(35)]
+        self.image = self.images[self.index]
 
         # bouton
         self.nextButton = Bouton_Image(BUTONS_POS["intro next"], "assets/images/next_button/next_button0.png", 
@@ -57,23 +63,33 @@ class Menu:
     # gere l'intro
     def intro(self):
         
-        self.screen.fill("green")
-        self.screen.blit(self.textIntro, self.textIntro_rect)
+        # animation
+        self.screen.blit(self.image, (0,0))
+        if self.index < len(self.images):
+            self.image = self.images[int(self.index)]
+            self.index += 0.2
+
+        # bouton
         self.screen.blit(self.nextButton.image, self.nextButton.rect)
-        
+
         # bouton pour passer
         if self.nextButton.check_click():
             self.introActive = False
+            self.index = 0
+            self.image = self.images[int(self.index)]
 
 
 
     # gere le menu
     def menuAffiche(self):
         
-        self.screen.fill("blue")
-        self.screen.blit(self.textTitle, self.textTitle_rect)
+        self.screen.blit(self.image, (0,0))
 
         self.all_buttons_menu.draw(self.screen)
+
+        pygame.draw.rect(self.screen, "black", pygame.Rect(20, 155, 745, 140))
+        pygame.draw.rect(self.screen, (255, 229, 204), pygame.Rect(25, 160, 735, 100))
+        self.screen.blit(self.textTitle, self.textTitle_rect)
 
         # boutons
         if self.playButton.check_click():
