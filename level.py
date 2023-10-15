@@ -105,6 +105,8 @@ class Level:
             self.collide_sprite.add(self.goat)
             self.all_sprite.add(self.goat)
 
+            self.create_eclairs('crow')
+            
             self.createStickAndStone()
 
 
