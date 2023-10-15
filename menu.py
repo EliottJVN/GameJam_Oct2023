@@ -240,4 +240,17 @@ class Animated_Win():
         if levelname == "12":
             # animation
             self.screen.blit(self.img12, (0,0))
-            self.screen.blit(self.imageCraft, (400,400))
+            self.screen.blit(self.imageCraft, (350,380))
+
+            if 300 < pygame.time.get_ticks() - self.startAnimationTimer < 2500:
+                if self.index < len(self.list_images_eclair):
+                    self.image = self.image_crafting_tables[int(self.index)]
+                    self.index += 0.2
+                else:
+                    self.index = 3
+                image_rect = self.image.get_rect()
+                image_rect.topleft = (350,380)
+                self.screen.blit(self.image, image_rect)
+
+            elif pygame.time.get_ticks() - self.startAnimationTimer > 2500:
+                self.end = True
