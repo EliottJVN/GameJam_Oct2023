@@ -105,12 +105,27 @@ class Level:
             self.collide_sprite.add(self.goat)
             self.all_sprite.add(self.goat)
 
-            # create crow
-            self.create_eclairs('crow')
+            self.createStickAndStone()
 
 
         elif self.levelName == "2":
             pass
+
+
+    # crée les stick stone
+    def createStickAndStone(self):
+        
+        for i in range(3):
+                stick = Collectable(POSITION_STICK_L2[i],"stick")
+                self.sprite_sticks.add(stick)
+                self.collide_sprite.add(stick)
+                self.all_sprite.add(stick)
+        for i in range(3):
+                stone = Collectable(POSITION_STONE[i],"stone")
+                self.sprite_sticks.add(stone)
+                self.collide_sprite.add(stone)
+                self.all_sprite.add(stone)
+
 
     
     # reset tout les groupes/attributs
@@ -180,6 +195,7 @@ class Level:
                     sprite.kill()
                 self.create_eclairs('crow')
                   
+
         # si le joueur peur récupérer ou déposer un objet
         if self.player.afficher_pickable:
             self.all_sprite.add(self.e_button)
@@ -222,7 +238,7 @@ class Level:
         else:
             self.screen.fill('black')
     
-    def create_eclairs(self,sprite):
+    def create_eclairs(self):
         eclairs = []
         apparition = [(rd.randint(10,400),rd.randint(10,400)),
                     (rd.randint(400,790),rd.randint(10,400)),
@@ -231,7 +247,7 @@ class Level:
                     (rd.randint(400,790),rd.randint(400,790))]
         
         for i in range(5):
-            eclair = Falling_Ennemy(sprite_name=sprite,coord=apparition[i])
+            eclair = Falling_Ennemy(sprite_name='eclair',coord=apparition[i])
             self.sprite_falling_enemies.add(eclair)
             self.all_sprite.add(eclair)
             eclairs.append(eclair)
