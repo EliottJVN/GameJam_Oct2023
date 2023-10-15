@@ -257,6 +257,15 @@ class Player(Sprite_Animation):
                         if self.inventory == None:
                             self.inventory = sprite.type
                             sprite.kill()
+
+                # si il touche la goat et que elle dash
+                elif sprite.sprite_name == "goat" and "_" in sprite.state:
+                    if sprite.state == "right_dash":
+                        sprite.state = "left"
+                        sprite.vect.x = -1
+                    elif sprite.state == "left_dash":
+                        sprite.state = "right"
+                        sprite.vect.x = 1
                     
                 else: goesInLoop = False
 
