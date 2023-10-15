@@ -25,7 +25,7 @@ INTRO_TEXT_4 = "Le chemin sera long pour pouvoir réparer le Pisto-portail"
 
 # settings pos button
 BUTONS_POS = {"intro next": (750, 600), "menu jouer": (400, 500), "menu continuer": (400, 600), "menu quit": (400, 700)}
-BUTON_MAP_POS = [(200, 300), (200, 500), (400, 400)]
+BUTON_MAP_POS = [(200, 290), (200, 500), (400, 400)]
 
 
 # settings player

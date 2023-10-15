@@ -36,6 +36,8 @@ class Map:
                                        survolable = False, 
                                        resize = 2)
         
+        self.image = pygame.transform.scale(pygame.image.load("assets/images/backgrounds/map.png").convert_alpha(), (800, 800))
+        
 
     def update(self):
 
@@ -79,6 +81,7 @@ class Map:
     def run(self):
 
         self.screen.fill("black")
+        self.screen.blit(self.image, (0, 0))
         self.all_sprite.draw(self.screen)
 
         self.all_sprite.update()
