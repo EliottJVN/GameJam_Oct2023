@@ -57,7 +57,7 @@ class Level:
             self.image = pygame.transform.scale(self.image, (800, 800))        
 
             # middle image
-            self.middleImage = Campfire("middle_image", "campfire_burning", LIST_MIDDLE_IMAGE)
+            self.middleImage = Campfire("middle_image", "campfire_building", LIST_MIDDLE_IMAGE)
             self.collide_sprite.add(self.middleImage)
             self.all_sprite.add(self.middleImage)
 
