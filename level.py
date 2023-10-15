@@ -71,13 +71,18 @@ class Level:
             self.rain = Rain(self.all_sprite)
             
             # Eclair
-            
+            eclairs = []
             for i in range(5):
                 eclair = Falling_Ennemy(sprite_name='eclair',coord=APPARITION[i])
                 self.sprite_falling_enemies.add(eclair)
                 self.collide_sprite.add(eclair)
                 self.all_sprite.add(eclair)
+                eclairs.append(eclair)
 
+            pick = rd.randint(0,4)
+            pick = eclairs[pick]
+
+            pick.state = "hit"
 
             #player
             self.player.slide = True
@@ -121,7 +126,8 @@ class Level:
                 self.textNbrStick = self.fontNbrStick.render(self.text, True, "white")
             self.screen.blit(self.textNbrStick, self.textNbrStick_rect)
 
-        # si le joueur peur récupérer ou déposer un objet
+                        
+            # si le joueur peur récupérer ou déposer un objet
         if self.player.afficher_pickable:
             self.all_sprite.add(self.e_button)
             self.e_button.rect.center = (self.player.rect.centerx, self.player.rect.centery-60)
