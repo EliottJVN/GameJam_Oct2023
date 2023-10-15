@@ -23,6 +23,5 @@ class Collectable(Sprite_Animation):
     
 
     def update(self):
-        self.collision()
         Sprite_Animation.animate(self, key = self.type)
     
