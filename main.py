@@ -64,7 +64,7 @@ class Main():
     # event loop de level
     def gameOver(self):
 
-        for event in pygame.event.get():
+        for event in pygame.event.get(): 
             if event.type == pygame.QUIT:
                 self.running = False
                 pygame.quit()
