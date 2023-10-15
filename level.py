@@ -31,6 +31,8 @@ class Level:
         self.spaceButon = Space_Buton()
         self.e_button = E_Buton()
 
+        self.image_pickup_object = None
+
         #group
         self.all_sprite = pygame.sprite.Group()
         self.sprite_sticks = pygame.sprite.Group()
@@ -49,6 +51,7 @@ class Level:
 
         # crée bon setup pour le niveau
         self.levelName = levelName
+        self.all_sprite.add(self.player)
 
         if self.levelName == "11":
             # fond
@@ -93,14 +96,16 @@ class Level:
     # reset tout les groupes/attributs
     def win(self):
 
-        self.all_sprite.empty()
-        self.sprite_enemies.empty()
+        if self.levelName == "11" and self.middleImage.inventory["stick"] == 5:
+            
+            self.all_sprite.empty()
+            self.sprite_enemies.empty()
 
-        self.levelName = None
-        self.image = None
-        self.middleImage = None
+            self.levelName = None
+            self.image = None
+            self.middleImage = None
 
-        self.player.delete()
+            self.player.delete()
 
 
     def update(self):
@@ -128,7 +133,7 @@ class Level:
                     sprite.kill()
                 self.create_eclairs()
                         
-            # si le joueur peur récupérer ou déposer un objet
+        # si le joueur peur récupérer ou déposer un objet
         if self.player.afficher_pickable:
             self.all_sprite.add(self.e_button)
             self.e_button.rect.center = (self.player.rect.centerx, self.player.rect.centery-60)
@@ -136,7 +141,13 @@ class Level:
             if self.e_button in self.all_sprite:
                 self.e_button.kill()
 
-
+        #si le joueuer a recup un objet il s'affiche au dessus
+        if self.player.inventory:
+            self.image_pickup_object = pygame.transform.scale_by(pygame.image.load(f"assets/images/collectables/{self.player.inventory}.png").convert_alpha(), SCALE_COLLECTABLE)
+            self.screen.blit(self.image_pickup_object, (self.player.rect.centerx-10, self.player.rect.centery-70))
+        else:
+            self.image_pickup_object = None
+ 
 
     def run(self):
         
@@ -153,6 +164,9 @@ class Level:
 
             #update sprite
             self.all_sprite.update()
+
+            # verifie si a win
+            self.win()
         
         #sinon ecran noir
         else:
