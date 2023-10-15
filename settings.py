@@ -49,7 +49,7 @@ APPARITION = [(rd.randint(120,300),rd.randint(120,300)),
               (rd.randint(500,680),rd.randint(500,680))] # distance pixel de chaque objet
 
 # settings middle image
-LIST_MIDDLE_IMAGE = ['campfire_burning','campfire_building']
+LIST_MIDDLE_IMAGE = ['campfire_burning','campfire_building', "crafing_pickaxe", "crafting_table"]
 
 # settings collectable
 SCALE_COLLECTABLE = 3
