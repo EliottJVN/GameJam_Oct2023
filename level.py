@@ -2,6 +2,7 @@ import pygame
 from player import Player
 from collectable import Collectable
 from falling_ennemy import Falling_Ennemy
+from running_ennemy import Running_Ennemy
 from settings import *
 from middleImage import *
 from button import Space_Buton, E_Buton
@@ -82,6 +83,7 @@ class Level:
             #player
             self.player.slide = True
 
+        ## Setup niv 1.2
         elif self.levelName == "12":
             # fond
             self.image = pygame.image.load("assets/images/backgrounds/day.png")
@@ -91,6 +93,11 @@ class Level:
             self.middleImage = Crafting_Tables("middle_image", "crafting_table", LIST_MIDDLE_IMAGE)
             self.collide_sprite.add(self.middleImage)
             self.all_sprite.add(self.middleImage)
+
+            self.goat = Running_Ennemy('goat')
+            self.collide_sprite.add(self.goat)
+            self.all_sprite.add(self.goat)
+
 
         elif self.levelName == "2":
             pass
