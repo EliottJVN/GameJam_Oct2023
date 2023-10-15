@@ -50,7 +50,7 @@ WAIT = 1000
 REFRESH = 2000
 
 # settings middle image
-LIST_MIDDLE_IMAGE = ['campfire_burning','campfire_building']
+LIST_MIDDLE_IMAGE = ['campfire_burning','campfire_building', "crafing_pickaxe", "crafting_table"]
 
 # settings collectable
 SCALE_COLLECTABLE = 3

@@ -74,10 +74,17 @@ class Level:
             self.create_eclairs()
             
             #player
-            self.player.slide = False
+            self.player.slide = True
 
         elif self.levelName == "12":
-            pass
+            # fond
+            self.image = pygame.image.load("assets/images/backgrounds/day.png")
+            self.image = pygame.transform.scale(self.image, (800, 800))        
+
+            # middle image
+            self.middleImage = Crafting_Tables("middle_image", "crafting_table", LIST_MIDDLE_IMAGE)
+            self.collide_sprite.add(self.middleImage)
+            self.all_sprite.add(self.middleImage)
 
         elif self.levelName == "2":
             pass
@@ -93,7 +100,7 @@ class Level:
         self.image = None
         self.middleImage = None
 
-        self.player.slide = False 
+        self.player.delete()
 
 
     def update(self):

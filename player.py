@@ -36,6 +36,31 @@ class Player(Sprite_Animation):
         # group to collide
         self.sprite_enemies = sprite_enemies
         self.collide_sprite = collide_sprite 
+
+
+    # reset perso
+    def delete(self):
+
+        # Création des attributs par défaut du joueur    
+        self.health = HEALTH
+        self.max_health = MAX_HEALTH
+        self.velocity = VELOCITY_PLAYER
+        self.inventory = None
+        self.vector = pygame.math.Vector2(VECTOR) # Vérifie le déplacement
+        self.state = STATE
+        self.afficher_pickable = False
+
+        # attributs joueur slide
+        self.slide = SLIDE
+        self.slideBegin = False
+        self.slideActive = False
+        self.perfectStop = False
+        self.walk = False
+        self.space_bar_pressed = False
+
+        # Création du rectangle
+        self.rect = self.image.get_rect()
+        self.rect.center = (300, 400)
     
 
     def update(self):
@@ -196,7 +221,19 @@ class Player(Sprite_Animation):
         goesInLoop = False
 
         for sprite in self.collide_sprite.sprites():
-            if sprite.rect.colliderect(self.rect):
+            if hasattr(sprite, "hitbox"):
+                if sprite.hitbox_rect.colliderect(self.rect):
+                    if sprite.sprite_name == "eclair" and pygame.time.get_ticks() - sprite.timer >= WAIT:
+                                       
+                        if self.health > 0:
+                            self.health -= 1
+                            print(self.health)
+                            sprite.kill()
+                        else:
+                            print('game_over')
+                            self.health = MAX_HEALTH
+
+            elif sprite.rect.colliderect(self.rect):
                 # collide middleimage
                 if sprite.sprite_name == "middle_image":
                     self.test_collision(sprite)
@@ -218,15 +255,6 @@ class Player(Sprite_Animation):
                         if self.inventory == None:
                             self.inventory = sprite.type
                             sprite.kill()
-                
-                elif sprite.sprite_name == "eclair" and pygame.time.get_ticks() - sprite.timer >= WAIT:
-                    if self.health > 0:
-                        self.health -= 1
-                        print(self.health)
-                        sprite.kill()
-                    else:
-                        print('game_over')
-                        self.health = MAX_HEALTH
                     
                 else: goesInLoop = False
 
