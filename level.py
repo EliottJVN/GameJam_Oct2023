@@ -74,7 +74,7 @@ class Level:
             self.create_eclairs()
             
             #player
-            self.player.slide = False
+            self.player.slide = True
 
         elif self.levelName == "12":
             pass
@@ -93,7 +93,7 @@ class Level:
         self.image = None
         self.middleImage = None
 
-        self.player.slide = False 
+        self.player.slide = True
 
 
     def update(self):
