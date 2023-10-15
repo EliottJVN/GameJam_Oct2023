@@ -113,7 +113,11 @@ class Level:
 
 
         elif self.levelName == "2":
-            pass
+            self.sound_manager.play_music('ee')
+            self.image = pygame.image.load('assets\images\goat\la_goat_dentre_les_goat.png')
+            self.image = pygame.transform.scale(self.image, (400,400))
+            self.rect = self.image.get_rect()
+            self.rect.center = (400,400)
 
 
     # crée les stick stone
@@ -135,7 +139,7 @@ class Level:
     # reset tout les groupes/attributs
     def win(self):
 
-        if self.levelName == "11" and not self.sprite_sticks and not self.player.inventory:
+        if self.levelName == "11" and  not self.sprite_sticks and  not self.player.inventory:
                     
             self.all_sprite.empty()
             self.sprite_sticks.empty()
@@ -150,7 +154,7 @@ class Level:
 
             self.player.delete()
 
-        if self.levelName == "12" and not self.sprite_sticks and not self.player.inventory:
+        if self.levelName == "12" and  not self.sprite_sticks and  not self.player.inventory:
 
             self.all_sprite.empty()
             self.sprite_sticks.empty()
@@ -164,6 +168,7 @@ class Level:
             self.get_rect = None
 
             self.player.delete()
+        
 
 
     # reset tout les groupes/attributs

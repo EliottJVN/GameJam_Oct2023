@@ -16,6 +16,7 @@ class Sound_Manager:
             'nivbis':pygame.mixer.Sound('assets\sounds\music\Dream.ogg'),
             'nivter':pygame.mixer.Sound('assets\sounds\music\The Cave.ogg'),
             'intro':pygame.mixer.Sound('assets\sounds\music\Intro - Adventure Begin.ogg'),
+            'ee': pygame.mixer.Sound('assets\sounds\music\Musique.mp3')
         }
 
     def play(self,name):
