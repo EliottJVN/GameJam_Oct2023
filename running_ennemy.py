@@ -8,6 +8,7 @@ class Running_Ennemy(Sprite_Animation):
         self.state = rd.choice(['right_dash','left_dash'])
         super().__init__(sprite_name,self.state,LIST_STATE_ENNEMY, SCALE_ENNEMY, fps = 0.2)
         self.set_up()
+        self.destroy = False
         
     def set_up(self):
         # Attribut par défaut
@@ -30,12 +31,16 @@ class Running_Ennemy(Sprite_Animation):
             if self.rect.centerx > 400:
                 self.state = 'right'
                 self.velocity = VELOCITY_ENNEMY
+                if not self.destroy:
+                    self.destroy = True
                 
         elif self.state == "left_dash":
             self.rect.centerx -= self.velocity
             if self.rect.centerx < 400:
                 self.state = "left"
                 self.velocity = VELOCITY_ENNEMY
+                if not self.destroy:
+                    self.destroy = True
                 
         elif self.state == "left":
             self.rect.centerx -= self.velocity

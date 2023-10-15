@@ -224,6 +224,12 @@ class Level:
                 for sprite in self.sprite_falling_enemies:
                     sprite.kill()
                 self.create_eclairs('crow', self.player.hard)
+
+            if self.goat.destroy:
+                for sprite in self.sprite_sticks:
+                    sprite.kill()
+                self.createStickAndStone()
+                self.goat.destroy = False
                   
 
         # si le joueur peur récupérer ou déposer un objet
