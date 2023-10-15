@@ -100,7 +100,7 @@ class Level:
         self.image = None
         self.middleImage = None
 
-        self.player.slide = False 
+        self.player.slide = True
 
 
     def update(self):
@@ -123,7 +123,7 @@ class Level:
             self.screen.blit(self.textNbrStick, self.textNbrStick_rect)
 
             # Eclair
-            if pygame.time.get_ticks() - self.eclair.timer >= 6000:
+            if pygame.time.get_ticks() - self.eclair.timer >= REFRESH:
                 for sprite in self.sprite_falling_enemies:
                     sprite.kill()
                 self.create_eclairs()
@@ -169,11 +169,11 @@ class Level:
         for i in range(5):
             eclair = Falling_Ennemy(sprite_name='eclair',coord=apparition[i])
             self.sprite_falling_enemies.add(eclair)
-            self.collide_sprite.add(eclair)
             self.all_sprite.add(eclair)
             eclairs.append(eclair)
 
         pick = rd.randint(0,4)
         self.eclair = eclairs[pick]
         self.eclair.state = "hit"
+        self.collide_sprite.add(self.eclair)
         

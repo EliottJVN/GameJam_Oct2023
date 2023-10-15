@@ -17,6 +17,10 @@ FONT_SIZE_STOP_POS = (400, 400)
 FONT_SIZE_NBRSTICK = 20
 FONT_SIZE_NBRSTICK_POS = (400, 440)
 
+INTRO_TEXT_1 = "Où et quand ai-je bien pu arriver...?"
+INTRO_TEXT_2 = "Cet endroit ne m'a pas l'air inhospitalié. Tant mieux, mon Pisto-portail vient juste de me lâcher !"
+INTRO_TEXT_3 = "J'ai malheureusement perdu toutes mes affaires donc le chemin sera long pour pouvoir réparer le Pisto-portail."
+
 
 # settings pos button
 BUTONS_POS = {"intro next": (700, 700), "menu jouer": (400, 500), "menu continuer": (400, 600), "menu quit": (400, 700)}
@@ -42,11 +46,8 @@ LIST_STATE_ENNEMY = ['right','left']
 # settings falling ENNEMY
 LIST_STATE_F_ENNEMY = ['hit','idle']
 SCALE_F_ENNEMY = 2.5
-APPARITION = [(rd.randint(120,300),rd.randint(120,300)),
-              (rd.randint(500,680),rd.randint(120,300)),
-              (rd.randint(120,300),rd.randint(300,500)),
-              (rd.randint(120,300),rd.randint(500,680)),
-              (rd.randint(500,680),rd.randint(500,680))] # distance pixel de chaque objet
+WAIT = 1000
+REFRESH = 2000
 
 # settings middle image
 LIST_MIDDLE_IMAGE = ['campfire_burning','campfire_building', "crafing_pickaxe", "crafting_table"]
