@@ -232,7 +232,7 @@ class Animated_Win():
                     self.index += 0.2
                 else:
                     self.index = 0
-                self.screen.blit(self.image, self.image_rectF)
+                self.screen.blit(self.image, (self.image_rectF.topleft[0] - 2, self.image_rectF.topleft[1] - 30))
 
             else:
                 self.end = True
