@@ -17,7 +17,7 @@ class Player(Sprite_Animation):
         self.vector = pygame.math.Vector2(VECTOR) # Vérifie le déplacement
         self.state = STATE
         self.afficher_pickable = False
-
+        self.hard = False
         # attributs joueur slide
         self.slide = SLIDE
         self.slideBegin = False
@@ -71,6 +71,13 @@ class Player(Sprite_Animation):
             self.mouvementSlide()
         else:
             self.mouvement()
+        
+        key = pygame.key.get_pressed()
+        if key[pygame.K_h] and self.hard:
+            self.hard = False
+        elif key[pygame.K_h] and not self.hard:
+            self.hard = True
+        
         self.colisionBorder()
         self.collision()
         Sprite_Animation.animate(self, self.vector,self.state)
@@ -227,6 +234,15 @@ class Player(Sprite_Animation):
             if hasattr(sprite, "hitbox"):
                 if sprite.hitbox_rect.colliderect(self.rect):
                     if sprite.sprite_name == "eclair" and pygame.time.get_ticks() - sprite.timer >= WAIT:
+                                       
+                        if self.health > 0:
+                            self.health -= 1
+                            print(self.health)
+                            sprite.kill()
+                        if self.health == 0:
+                            self.dead = True
+                            break
+                    if sprite.sprite_name == "crow" and pygame.time.get_ticks() - sprite.timer >= WAIT:
                                        
                         if self.health > 0:
                             self.health -= 1
