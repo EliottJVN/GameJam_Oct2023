@@ -1,4 +1,4 @@
-
+import random as rd
 # settings base
 TAILLE_ECRAN = (800, 800)
 FPS = 60
@@ -41,7 +41,12 @@ LIST_STATE_ENNEMY = ['right','left']
 
 # settings falling ENNEMY
 LIST_STATE_F_ENNEMY = ['hit','idle']
-SCALE_F_ENNEMY = 3
+SCALE_F_ENNEMY = 0.2
+APPARITION = [(rd.randint(120,300),rd.randint(120,300)),
+              (rd.randint(500,680),rd.randint(120,300)),
+              (rd.randint(120,300),rd.randint(300,500)),
+              (rd.randint(120,300),rd.randint(500,680)),
+              (rd.randint(500,680),rd.randint(500,680))] # distance pixel de chaque objet
 
 # settings middle image
 LIST_MIDDLE_IMAGE = ['campfire_burning','campfire_building']

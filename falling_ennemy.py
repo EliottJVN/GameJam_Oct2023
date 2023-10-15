@@ -3,20 +3,15 @@ from settings import *
 from sprite_animation import Sprite_Animation
 
 class Falling_Ennemy(Sprite_Animation):
-    def ___init__(self,sprite_name):
-        super.__init__(sprite_name,'idle',LIST_STATE_F_ENNEMY, SCALE_F_ENNEMY)
-        
-        # Création des attributs par défaut du joueur
-        self.velocity = 5
-        self.vector = pygame.math.Vector2((0,0)) # Vérifie le déplacement
-
+    def __init__(self,sprite_name,coord):
+        self.state = 'hit'
+        super().__init__(sprite_name,self.state,LIST_STATE_F_ENNEMY, SCALE_F_ENNEMY)
         # Création du rectangle
         self.rect = self.image.get_rect()
-        self.rect.x = 0
-        self.rect.y = 0
+        self.rect.center = coord
     
     def update(self):
-        self.animate(self.vector)
+        Sprite_Animation.animate(self, key = self.state)
     
     def colision(self):
         pass

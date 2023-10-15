@@ -204,11 +204,14 @@ class Player(Sprite_Animation):
                         sprite.current_img += 1
                         sprite.image = sprite.images[sprite.state][sprite.current_img]
                         self.inventory = None
-                        sprite.inventory["stick"] += 1
-             
+
+
+                
                 elif sprite.sprite_name == "collectable":
-                    self.afficher_pickable = True
-                    goesInLoop = True
+                    # check si playeur a objet si non  alors afficher E
+                    if not self.inventory:
+                        self.afficher_pickable = True
+                        goesInLoop = True
                     key = pygame.key.get_pressed()
                     # En fonction des clés mises à jour du vecteur position.
                     if key[pygame.K_e]:
