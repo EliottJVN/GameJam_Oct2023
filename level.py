@@ -77,7 +77,7 @@ class Level:
             self.create_eclairs()
             
             #player
-            self.player.slide = True
+            self.player.slide = False
 
         elif self.levelName == "12":
             # fond
@@ -106,6 +106,12 @@ class Level:
             self.middleImage = None
 
             self.player.delete()
+
+    # reset tout les groupes/attributs
+    def game_over(self):
+
+        if self.player.dead:
+            self.levelName = "RESET"
 
 
     def update(self):
@@ -167,6 +173,9 @@ class Level:
 
             # verifie si a win
             self.win()
+
+            # verifie si dead
+            self.game_over()
         
         #sinon ecran noir
         else:
