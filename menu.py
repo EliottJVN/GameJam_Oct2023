@@ -16,9 +16,7 @@ class Menu:
 
         # text
         self.fontIntro = pygame.font.Font("assets/fonts/Pixeled.ttf", FONT_SIZE_INTRO)
-        self.textIntro = self.fontIntro.render("I N T R O", True, "black")
-        self.textIntro_rect = self.textIntro.get_rect(center = FONT_SIZE_INTRO_POS)
-
+        
         self.fontTitle = pygame.font.Font("assets/fonts/Pixeled.ttf", FONT_SIZE_TITLE)
         self.textTitle = self.fontTitle.render("FLASH MONKEY", True, "black")
         self.textTitle_rect = self.textTitle.get_rect(center = FONT_SIZE_TITLE_POS)
@@ -58,6 +56,10 @@ class Menu:
         self.introActive = True
         self.clickJouer = False
         self.quit = False
+        self.index_text = 1
+        self.text1 = None
+        self.text2 = None
+        self.text3 = None
 
 
     # gere l'intro
@@ -68,9 +70,38 @@ class Menu:
         if self.index < len(self.images):
             self.image = self.images[int(self.index)]
             self.index += 0.2
+            afficher_text = False
+        else:
+            self.index_text += 0.5
+            afficher_text = True
+
+        if self.index_text < len(INTRO_TEXT_1) and afficher_text:
+            self.text1 = INTRO_TEXT_1[:int(self.index_text)]
+        elif self.index_text - len(INTRO_TEXT_1) < len(INTRO_TEXT_2) and afficher_text:
+            self.text1 = INTRO_TEXT_1
+            self.text2 = INTRO_TEXT_2[:int(self.index_text) - len(INTRO_TEXT_1)]
+        elif self.index_text - len(INTRO_TEXT_1) - len(INTRO_TEXT_2) < len(INTRO_TEXT_2) and afficher_text:
+            self.text2 = INTRO_TEXT_2
+            self.text3 = INTRO_TEXT_3[:int(self.index_text) - len(INTRO_TEXT_1) - len(INTRO_TEXT_2)]
+        elif afficher_text:
+            self.text3 = INTRO_TEXT_3
 
         # bouton
         self.screen.blit(self.nextButton.image, self.nextButton.rect)
+
+        #text
+        if self.text1:
+            textIntro = self.fontIntro.render(self.text1, True, "black")
+            textIntro_rect = textIntro.get_rect(midleft = FONT_SIZE_INTRO_POS)
+            self.screen.blit(textIntro, textIntro_rect)
+        if self.text2:
+            textIntro2 = self.fontIntro.render(self.text2, True, "black")
+            textIntro2_rect = textIntro.get_rect(midleft = (FONT_SIZE_INTRO_POS[0], FONT_SIZE_INTRO_POS[1] + 20))
+            self.screen.blit(textIntro2, textIntro2_rect)
+        if self.text3:
+            textIntro3 = self.fontIntro.render(self.text3, True, "black")
+            textIntro3_rect = textIntro.get_rect(midleft = (FONT_SIZE_INTRO_POS[0], FONT_SIZE_INTRO_POS[1] + 40))
+            self.screen.blit(textIntro3, textIntro3_rect)
 
         # bouton pour passer
         if self.nextButton.check_click():
