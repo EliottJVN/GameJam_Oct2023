@@ -60,6 +60,7 @@ class Menu:
         self.text1 = None
         self.text2 = None
         self.text3 = None
+        self.text4 = None
 
 
     # gere l'intro
@@ -80,11 +81,14 @@ class Menu:
         elif self.index_text - len(INTRO_TEXT_1) < len(INTRO_TEXT_2) and afficher_text:
             self.text1 = INTRO_TEXT_1
             self.text2 = INTRO_TEXT_2[:int(self.index_text) - len(INTRO_TEXT_1)]
-        elif self.index_text - len(INTRO_TEXT_1) - len(INTRO_TEXT_2) < len(INTRO_TEXT_2) and afficher_text:
+        elif self.index_text - len(INTRO_TEXT_1) - len(INTRO_TEXT_2) < len(INTRO_TEXT_3) and afficher_text:
             self.text2 = INTRO_TEXT_2
             self.text3 = INTRO_TEXT_3[:int(self.index_text) - len(INTRO_TEXT_1) - len(INTRO_TEXT_2)]
-        elif afficher_text:
+        elif afficher_text - len(INTRO_TEXT_1) - len(INTRO_TEXT_2) - len(INTRO_TEXT_3) < len(INTRO_TEXT_4) and afficher_text:
             self.text3 = INTRO_TEXT_3
+            self.text4 = INTRO_TEXT_4[:int(self.index_text) - len(INTRO_TEXT_1) - len(INTRO_TEXT_2) - len(INTRO_TEXT_3)]
+        elif afficher_text:
+            self.text4 = INTRO_TEXT_4
 
         # bouton
         self.screen.blit(self.nextButton.image, self.nextButton.rect)
@@ -100,8 +104,13 @@ class Menu:
             self.screen.blit(textIntro2, textIntro2_rect)
         if self.text3:
             textIntro3 = self.fontIntro.render(self.text3, True, "black")
-            textIntro3_rect = textIntro.get_rect(midleft = (FONT_SIZE_INTRO_POS[0], FONT_SIZE_INTRO_POS[1] + 40))
+            textIntro3_rect = textIntro.get_rect(midleft = (FONT_SIZE_INTRO_POS[0], FONT_SIZE_INTRO_POS[1] + 45))
             self.screen.blit(textIntro3, textIntro3_rect)
+        if self.text4:
+            textIntro4 = self.fontIntro.render(self.text4, True, "black")
+            textIntro4_rect = textIntro.get_rect(midleft = (FONT_SIZE_INTRO_POS[0], FONT_SIZE_INTRO_POS[1] + 70))
+            self.screen.blit(textIntro4, textIntro4_rect)
+
 
         # bouton pour passer
         if self.nextButton.check_click():
