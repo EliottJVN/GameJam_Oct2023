@@ -149,6 +149,21 @@ class Level:
 
             self.player.delete()
 
+        if self.levelName == "12" and self.middleImage.inventory["stick"] == 3 and self.middleImage.inventory["stone"] == 3:
+
+            self.all_sprite.empty()
+            self.sprite_sticks.empty()
+            self.sprite_falling_enemies.empty()
+            self.sprite_enemies.empty()
+            self.sprite_enemies.empty()
+
+            self.won = True
+            self.image = None
+            self.middleImage = None
+            self.get_rect = None
+
+            self.player.delete()
+
 
     # reset tout les groupes/attributs
     def game_over(self):
