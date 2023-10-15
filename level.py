@@ -24,6 +24,8 @@ class Level:
         self.levelName = None
         self.middleImage = None
 
+        self.won = False
+
         # text
         self.text = "0/5"
         self.fontNbrStick = pygame.font.Font("assets/fonts/Pixeled.ttf", FONT_SIZE_NBRSTICK)
@@ -57,7 +59,9 @@ class Level:
         # crée bon setup pour le niveau
         self.levelName = levelName
         self.all_sprite.add(self.player)
-        
+
+        self.won = False
+
         if self.levelName == "11":
             self.sound_manager.play_music('niv')
             # fond
@@ -110,19 +114,20 @@ class Level:
     def win(self):
 
         if self.levelName == "11" and self.middleImage.inventory["stick"] == 5:
-            
+                    
             self.all_sprite.empty()
             self.sprite_sticks.empty()
             self.sprite_falling_enemies.empty()
             self.sprite_enemies.empty()
             self.sprite_enemies.empty()
 
-            self.levelName = None
+            self.won = True
             self.image = None
             self.middleImage = None
             self.get_rect = None
 
             self.player.delete()
+
 
     # reset tout les groupes/attributs
     def game_over(self):

@@ -1,6 +1,6 @@
 import pygame
 from settings import *
-from menu import Menu, Game_Over
+from menu import Menu, Game_Over, Animated_Win
 from level import Level
 from map import Map
 from sound_manager import Sound_Manager
@@ -28,6 +28,7 @@ class Main():
         self.level = Level()
         self.map = Map()
         self.gameOverDisplay = Game_Over()
+        self.animatedWin = Animated_Win()
         
     
     # event loop de intro + menu
@@ -79,6 +80,22 @@ class Main():
         if self.gameOverDisplay.quit:
             self.__init__()
 
+
+    # animate loo
+    def animatedLoop(self):
+
+        for event in pygame.event.get(): 
+            if event.type == pygame.QUIT:
+                self.running = False
+                pygame.quit()
+
+        self.animatedWin.run(self.level.levelName)
+
+        if self.animatedWin.end:
+            self.game_state = "map"
+            self.level.levelName = None
+            self.animatedWin.end = False
+
     
     # event loop de level
     def levelLoop(self):
@@ -91,8 +108,9 @@ class Main():
         self.level.run()
 
         # si le niveau est finit on repasse sur la map
-        if not self.level.levelName:
-            self.game_state = "map"
+        if self.level.won:
+            self.game_state = "animated"
+            self.animatedWin.startAnimationTimer = pygame.time.get_ticks()
         if self.level.levelName == "RESET":
             self.game_state = "game over"
 
@@ -109,6 +127,8 @@ class Main():
                 self.levelLoop()
             elif self.game_state == "game over":
                 self.gameOver()
+            elif self.game_state == "animated":
+                self.animatedLoop()
 
             pygame.display.update()
             self.clock.tick(FPS)

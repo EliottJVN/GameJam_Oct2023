@@ -16,9 +16,7 @@ class Menu:
 
         # text
         self.fontIntro = pygame.font.Font("assets/fonts/Pixeled.ttf", FONT_SIZE_INTRO)
-        self.textIntro = self.fontIntro.render("I N T R O", True, "black")
-        self.textIntro_rect = self.textIntro.get_rect(center = FONT_SIZE_INTRO_POS)
-
+        
         self.fontTitle = pygame.font.Font("assets/fonts/Pixeled.ttf", FONT_SIZE_TITLE)
         self.textTitle = self.fontTitle.render("FLASH MONKEY", True, "black")
         self.textTitle_rect = self.textTitle.get_rect(center = FONT_SIZE_TITLE_POS)
@@ -58,6 +56,11 @@ class Menu:
         self.introActive = True
         self.clickJouer = False
         self.quit = False
+        self.index_text = 1
+        self.text1 = None
+        self.text2 = None
+        self.text3 = None
+        self.text4 = None
 
 
     # gere l'intro
@@ -68,9 +71,46 @@ class Menu:
         if self.index < len(self.images):
             self.image = self.images[int(self.index)]
             self.index += 0.2
+            afficher_text = False
+        else:
+            self.index_text += 0.5
+            afficher_text = True
+
+        if self.index_text < len(INTRO_TEXT_1) and afficher_text:
+            self.text1 = INTRO_TEXT_1[:int(self.index_text)]
+        elif self.index_text - len(INTRO_TEXT_1) < len(INTRO_TEXT_2) and afficher_text:
+            self.text1 = INTRO_TEXT_1
+            self.text2 = INTRO_TEXT_2[:int(self.index_text) - len(INTRO_TEXT_1)]
+        elif self.index_text - len(INTRO_TEXT_1) - len(INTRO_TEXT_2) < len(INTRO_TEXT_3) and afficher_text:
+            self.text2 = INTRO_TEXT_2
+            self.text3 = INTRO_TEXT_3[:int(self.index_text) - len(INTRO_TEXT_1) - len(INTRO_TEXT_2)]
+        elif afficher_text - len(INTRO_TEXT_1) - len(INTRO_TEXT_2) - len(INTRO_TEXT_3) < len(INTRO_TEXT_4) and afficher_text:
+            self.text3 = INTRO_TEXT_3
+            self.text4 = INTRO_TEXT_4[:int(self.index_text) - len(INTRO_TEXT_1) - len(INTRO_TEXT_2) - len(INTRO_TEXT_3)]
+        elif afficher_text:
+            self.text4 = INTRO_TEXT_4
 
         # bouton
         self.screen.blit(self.nextButton.image, self.nextButton.rect)
+
+        #text
+        if self.text1:
+            textIntro = self.fontIntro.render(self.text1, True, "black")
+            textIntro_rect = textIntro.get_rect(midleft = FONT_SIZE_INTRO_POS)
+            self.screen.blit(textIntro, textIntro_rect)
+        if self.text2:
+            textIntro2 = self.fontIntro.render(self.text2, True, "black")
+            textIntro2_rect = textIntro.get_rect(midleft = (FONT_SIZE_INTRO_POS[0], FONT_SIZE_INTRO_POS[1] + 20))
+            self.screen.blit(textIntro2, textIntro2_rect)
+        if self.text3:
+            textIntro3 = self.fontIntro.render(self.text3, True, "black")
+            textIntro3_rect = textIntro.get_rect(midleft = (FONT_SIZE_INTRO_POS[0], FONT_SIZE_INTRO_POS[1] + 45))
+            self.screen.blit(textIntro3, textIntro3_rect)
+        if self.text4:
+            textIntro4 = self.fontIntro.render(self.text4, True, "black")
+            textIntro4_rect = textIntro.get_rect(midleft = (FONT_SIZE_INTRO_POS[0], FONT_SIZE_INTRO_POS[1] + 70))
+            self.screen.blit(textIntro4, textIntro4_rect)
+
 
         # bouton pour passer
         if self.nextButton.check_click():
@@ -142,3 +182,52 @@ class Game_Over():
         # bouton pour passer
         if self.quitButton.check_click():
             self.quit = True
+
+
+class Animated_Win():
+
+    def __init__(self):
+        # attribut pygame
+        self.screen = pygame.display.get_surface()
+        self.end = False
+
+        # 11
+        self.image_campfire = pygame.transform.scale_by(pygame.image.load(f"assets/images/middle_image/middle_image_campfire_building/middle_image_campfire_building5.png").convert_alpha(), 2)
+        self.image_rectF = self.image_campfire.get_rect()
+        self.image_rectF.center = (400, 400)
+        self.list_images_campfire = [pygame.transform.scale_by(pygame.image.load(f"assets/images/middle_image/middle_image_campfire_burning/middle_image_campfire_burning{i}.png").convert_alpha(), 2) for i in range(4)]
+        self.list_images_eclair = [pygame.transform.scale_by(pygame.image.load(f"assets/images/eclair/eclair_hit/eclair_hit{i}.png").convert_alpha(), 2.5) for i in range(4)]
+        self.img11 = pygame.transform.scale(pygame.image.load(f"assets/images/backgrounds/rain.png").convert_alpha(),(800,800))
+
+        self.index = 0
+        self.image = self.list_images_eclair[self.index]
+
+        self.startAnimationTimer = 0
+
+    
+    def run(self, levelname):
+
+        if levelname == "11":
+            # animation
+            self.screen.blit(self.img11, (0,0))
+            self.screen.blit(self.image_campfire, self.image_rectF)
+            if 300 < pygame.time.get_ticks() - self.startAnimationTimer < 950:
+                if self.index < len(self.list_images_eclair):
+                    self.image = self.list_images_eclair[int(self.index)]
+                    self.index += 1
+                else:
+                    self.index = 0
+                image_rect = self.image.get_rect()
+                image_rect.midbottom = self.image_rectF.midbottom
+                self.screen.blit(self.image, image_rect)
+
+            elif pygame.time.get_ticks() - self.startAnimationTimer < 2950:
+                if self.index < len(self.list_images_campfire):
+                    self.image = self.list_images_campfire[int(self.index)]
+                    self.index += 0.2
+                else:
+                    self.index = 0
+                self.screen.blit(self.image, self.image_rectF)
+
+            else:
+                self.end = True
