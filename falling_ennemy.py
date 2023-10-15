@@ -1,9 +1,10 @@
 import pygame
+from settings import *
 from sprite_animation import Sprite_Animation
 
 class Falling_Ennemy(Sprite_Animation):
     def ___init__(self,sprite_name):
-        super.__init__(sprite_name)
+        super.__init__(sprite_name,'idle',LIST_STATE_F_ENNEMY, SCALE_F_ENNEMY)
         
         # Création des attributs par défaut du joueur
         self.velocity = 5
