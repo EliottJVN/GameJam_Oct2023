@@ -80,9 +80,7 @@ class Level:
                 eclairs.append(eclair)
 
             pick = rd.randint(0,4)
-            pick = eclairs[pick]
-
-            pick.state = "hit"
+            eclairs[pick].state = "hit"
 
             #player
             self.player.slide = True

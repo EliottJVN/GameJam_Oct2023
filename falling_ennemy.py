@@ -12,8 +12,8 @@ class Falling_Ennemy(Sprite_Animation):
         self.timer = pygame.time.get_ticks()
         
     def update(self):
-        if pygame.time.get_ticks - self.timer >= 3000 and self.state == 'hit':
-            Sprite_Animation.animate(self, key = self.state)
+        if pygame.time.get_ticks() - self.timer >= 3000 and self.state == 'hit':
+            Sprite_Animation.animate(self, vect=pygame.math.Vector2((1,1)),key = self.state)
         else:
             Sprite_Animation.animate(self, key = 'idle')
     
