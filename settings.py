@@ -48,7 +48,7 @@ SCALE_ENNEMY = 3
 # settings falling ENNEMY
 LIST_STATE_F_ENNEMY = ['hit','idle']
 SCALE_F_ENNEMY = [2.5,2.5]
-FPS_ENNEMY = [0.2,2]
+FPS_ENNEMY = [1,0.25]
 WAIT = 500
 REFRESH = 2000
 
