@@ -46,8 +46,8 @@ LIST_STATE_ENNEMY = ['right','left']
 # settings falling ENNEMY
 LIST_STATE_F_ENNEMY = ['hit','idle']
 SCALE_F_ENNEMY = 2.5
-WAIT = 10000
-REFRESH = 20000
+WAIT = 500
+REFRESH = 2000
 
 # settings middle image
 LIST_MIDDLE_IMAGE = ['campfire_burning','campfire_building', "crafing_pickaxe", "crafting_table"]

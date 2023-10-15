@@ -80,7 +80,7 @@ class Level:
             self.create_eclairs()
             
             #player
-            self.player.slide = False
+            self.player.slide = True
 
         elif self.levelName == "12":
             # fond
@@ -188,11 +188,11 @@ class Level:
     
     def create_eclairs(self):
         eclairs = []
-        apparition = [(rd.randint(120,300),rd.randint(120,300)),
-                    (rd.randint(500,680),rd.randint(120,300)),
-                    (rd.randint(120,300),rd.randint(300,500)),
-                    (rd.randint(120,300),rd.randint(500,680)),
-                    (rd.randint(500,680),rd.randint(500,680))]
+        apparition = [(rd.randint(10,400),rd.randint(10,400)),
+                    (rd.randint(400,790),rd.randint(10,400)),
+                    (rd.randint(10,790),rd.randint(10,790)),
+                    (rd.randint(10,400),rd.randint(400,790)),
+                    (rd.randint(400,790),rd.randint(400,790))]
         
         for i in range(5):
             eclair = Falling_Ennemy(sprite_name='eclair',coord=apparition[i])
