@@ -105,9 +105,27 @@ class Level:
             self.collide_sprite.add(self.goat)
             self.all_sprite.add(self.goat)
 
+            self.createStickAndStone()
+
 
         elif self.levelName == "2":
             pass
+
+
+    # crée les stick stone
+    def createStickAndStone(self):
+        
+        for i in range(3):
+                stick = Collectable(POSITION_STICK_L2[i],"stick")
+                self.sprite_sticks.add(stick)
+                self.collide_sprite.add(stick)
+                self.all_sprite.add(stick)
+        for i in range(3):
+                stone = Collectable(POSITION_STONE[i],"stone")
+                self.sprite_sticks.add(stone)
+                self.collide_sprite.add(stone)
+                self.all_sprite.add(stone)
+
 
     
     # reset tout les groupes/attributs
@@ -171,6 +189,7 @@ class Level:
             if 300<self.goat.rect.centerx<500:
                 self.sound_manager.play('goat')
                   
+
         # si le joueur peur récupérer ou déposer un objet
         if self.player.afficher_pickable:
             self.all_sprite.add(self.e_button)

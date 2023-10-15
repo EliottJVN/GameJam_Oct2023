@@ -239,12 +239,18 @@ class Player(Sprite_Animation):
             elif sprite.rect.colliderect(self.rect):
                 # collide middleimage
                 if sprite.sprite_name == "middle_image":
-                    self.test_collision(sprite)
-                    if self.inventory != None:
-                        sprite.current_img += 1
-                        sprite.image = sprite.images[sprite.state][sprite.current_img]
-                        self.inventory = None
-                        sprite.inventory["stick"] += 1
+                    if hasattr(sprite, "isBurning"):
+                        self.test_collision(sprite)
+                        if self.inventory != None:
+                            sprite.current_img += 1
+                            sprite.image = sprite.images[sprite.state][sprite.current_img]
+                            self.inventory = None
+                            sprite.inventory["stick"] += 1
+                    else:
+                        self.test_collision(sprite)
+                        if self.inventory != None:
+                            sprite.inventory[self.inventory] += 1
+                            self.inventory = None
                 
                 elif sprite.sprite_name == "collectable":
                     # check si playeur a objet si non  alors afficher E

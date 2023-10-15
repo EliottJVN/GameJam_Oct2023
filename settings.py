@@ -57,3 +57,5 @@ LIST_MIDDLE_IMAGE = ['campfire_burning','campfire_building', "crafing_pickaxe", 
 # settings collectable
 SCALE_COLLECTABLE = 3
 POSITION_STICK = [(100,100),(700,100), (100,700), (700,700),(400,200)]
+POSITION_STICK_L2 = [(120,101),(710,769), (350,710)]
+POSITION_STONE = [(710,101),(101,760), (350,90)]
