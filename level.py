@@ -239,7 +239,7 @@ class Level:
         else:
             self.screen.fill('black')
     
-    def create_eclairs(self):
+    def create_eclairs(self,sprite):
         eclairs = []
         apparition = [(rd.randint(10,400),rd.randint(10,400)),
                     (rd.randint(400,790),rd.randint(10,400)),
@@ -248,7 +248,7 @@ class Level:
                     (rd.randint(400,790),rd.randint(400,790))]
         
         for i in range(5):
-            eclair = Falling_Ennemy(sprite_name='eclair',coord=apparition[i])
+            eclair = Falling_Ennemy(sprite_name=sprite,coord=apparition[i])
             self.sprite_falling_enemies.add(eclair)
             self.all_sprite.add(eclair)
             eclairs.append(eclair)
