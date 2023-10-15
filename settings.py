@@ -14,6 +14,9 @@ FONT_SIZE_TITLE_POS = (400, 200)
 FONT_SIZE_STOP = 100
 FONT_SIZE_STOP_POS = (400, 400)
 
+FONT_SIZE_NBRSTICK = 20
+FONT_SIZE_NBRSTICK_POS = (400, 440)
+
 
 # settings pos button
 BUTONS_POS = {"intro next": (700, 700), "menu jouer": (400, 500), "menu continuer": (400, 600), "menu quit": (400, 700)}
@@ -31,10 +34,14 @@ Y_PLAYER = 400
 STATE = 'down'
 LIST_STATE = ['idle','right','left','up','down', 'right_crash', 'left_crash', 'right_crash_begin', 'left_crash_begin']
 
-# settings runnig ENNEMY
+# settings running ENNEMY
 VELOCITY_ENNEMY = 5
 VECTOR_ENNEMY = (0,0) # Vérifie le déplacement
 LIST_STATE_ENNEMY = ['right','left']
+
+# settings falling ENNEMY
+LIST_STATE_F_ENNEMY = ['hit','idle']
+SCALE_F_ENNEMY = 3
 
 # settings middle image
 LIST_MIDDLE_IMAGE = ['campfire_burning','campfire_building']

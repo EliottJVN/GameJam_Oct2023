@@ -77,7 +77,7 @@ class Space_Buton(Sprite_Animation):
 
     def __init__(self):
 
-        super().__init__("button_space",'animated',['animated'], 4, fps = 0.5)
+        super().__init__("button_space",'animated',['animated'], 4, fps = 0.3)
 
         self.rect = self.image.get_rect()
         self.rect.center = (400, 400)
@@ -90,7 +90,7 @@ class E_Buton(Sprite_Animation):
 
     def __init__(self):
 
-        super().__init__("button_E",'animated',['animated'], 2, fps = 0.5)
+        super().__init__("button_E",'animated',['animated'], 2, fps = 0.3)
 
         self.rect = self.image.get_rect()
         self.rect.center = (400, 400)

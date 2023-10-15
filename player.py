@@ -23,6 +23,7 @@ class Player(Sprite_Animation):
         self.slideActive = False
         self.perfectStop = False
         self.walk = False
+        self.space_bar_pressed = False
 
         # Création du rectangle
         self.rect = self.image.get_rect()
@@ -143,8 +144,11 @@ class Player(Sprite_Animation):
 
         # gere perfect stop
         elif self.slideActive and pygame.time.get_ticks() - self.curentTimeSlide < 700:
-            if key[pygame.K_SPACE]:
+            if key[pygame.K_SPACE] and not self.space_bar_pressed:
                 self.perfectStop = True
+                self.space_bar_pressed = True
+            elif not key[pygame.K_SPACE]:
+                self.space_bar_pressed = False
 
         # gere le slide
         elif self.slideActive and pygame.time.get_ticks() - self.curentTimeSlide < 3000 and not self.perfectStop:
@@ -200,8 +204,8 @@ class Player(Sprite_Animation):
                         sprite.current_img += 1
                         sprite.image = sprite.images[sprite.state][sprite.current_img]
                         self.inventory = None
-
-                
+                        sprite.inventory["stick"] += 1
+             
                 elif sprite.sprite_name == "collectable":
                     self.afficher_pickable = True
                     goesInLoop = True

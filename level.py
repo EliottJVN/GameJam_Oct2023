@@ -20,6 +20,12 @@ class Level:
         self.levelName = None
         self.middleImage = None
 
+        # text
+        self.text = "0/5"
+        self.fontNbrStick = pygame.font.Font("assets/fonts/Pixeled.ttf", FONT_SIZE_NBRSTICK)
+        self.textNbrStick = self.fontNbrStick.render(self.text, True, "white")
+        self.textNbrStick_rect = self.textNbrStick.get_rect(center = FONT_SIZE_NBRSTICK_POS)
+
         # button space
         self.spaceButon = Space_Buton()
         self.e_button = E_Buton()
@@ -97,6 +103,12 @@ class Level:
                 self.all_sprite.add(self.spaceButon)
             else:
                 self.spaceButon.kill()
+
+            # affiche nombre de stick
+            if self.text != f"{self.middleImage.inventory['stick']}/5":
+                self.text = f"{self.middleImage.inventory['stick']}/5"
+                self.textNbrStick = self.fontNbrStick.render(self.text, True, "white")
+            self.screen.blit(self.textNbrStick, self.textNbrStick_rect)
 
         # si le joueur peur récupérer ou déposer un objet
         if self.player.afficher_pickable:
