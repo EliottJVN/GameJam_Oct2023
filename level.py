@@ -3,7 +3,7 @@ from player import Player
 from collectable import Collectable
 from settings import *
 from middleImage import *
-from button import Space_Buton
+from button import Space_Buton, E_Buton
 from rain import Rain
 
 
@@ -22,6 +22,7 @@ class Level:
 
         # button space
         self.spaceButon = Space_Buton()
+        self.e_button = E_Buton()
 
         #group
         self.all_sprite = pygame.sprite.Group()
@@ -96,6 +97,15 @@ class Level:
                 self.all_sprite.add(self.spaceButon)
             else:
                 self.spaceButon.kill()
+
+        # si le joueur peur récupérer ou déposer un objet
+        if self.player.afficher_pickable:
+            self.all_sprite.add(self.e_button)
+            self.e_button.rect.center = (self.player.rect.centerx, self.player.rect.centery-60)
+        else:
+            if self.e_button in self.all_sprite:
+                self.e_button.kill()
+
 
 
     def run(self):

@@ -77,10 +77,23 @@ class Space_Buton(Sprite_Animation):
 
     def __init__(self):
 
-        super().__init__("button_space",'animate',['animate'], 4, fps = 0.5)
+        super().__init__("button_space",'animated',['animated'], 4, fps = 0.5)
 
         self.rect = self.image.get_rect()
         self.rect.center = (400, 400)
 
     def update(self):
-        Sprite_Animation.animate(self, pygame.math.Vector2(1,1), 'animate')
+        Sprite_Animation.animate(self, pygame.math.Vector2(1,1), 'animated')
+
+# animation bouton press !!!!!!!!!!!!
+class E_Buton(Sprite_Animation):
+
+    def __init__(self):
+
+        super().__init__("button_E",'animated',['animated'], 2, fps = 0.5)
+
+        self.rect = self.image.get_rect()
+        self.rect.center = (400, 400)
+
+    def update(self):
+        Sprite_Animation.animate(self, pygame.math.Vector2(1,1), 'animated')
