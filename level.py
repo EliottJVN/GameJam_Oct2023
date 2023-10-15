@@ -85,7 +85,7 @@ class Level:
             self.rain = Rain(self.all_sprite)
             
             # Eclair
-            self.create_eclairs('eclair')
+            self.create_eclairs('eclair', self.player.hard)
             
             #player
             self.player.slide = True
@@ -108,7 +108,7 @@ class Level:
             self.collide_sprite.add(self.goat)
             self.all_sprite.add(self.goat)
 
-            self.create_eclairs('crow')
+            self.create_eclairs('crow', self.player.hard)
             
             self.createStickAndStone()
 
@@ -210,7 +210,7 @@ class Level:
             if pygame.time.get_ticks() - self.eclair.timer >= REFRESH:
                 for sprite in self.sprite_falling_enemies:
                     sprite.kill()
-                self.create_eclairs('eclair')
+                self.create_eclairs('eclair', self.player.hard)
         
         
         elif self.levelName == "12":
@@ -223,7 +223,7 @@ class Level:
             if pygame.time.get_ticks() - self.eclair.timer >= REFRESH:
                 for sprite in self.sprite_falling_enemies:
                     sprite.kill()
-                self.create_eclairs('crow')
+                self.create_eclairs('crow', self.player.hard)
                   
 
         # si le joueur peur récupérer ou déposer un objet
@@ -268,7 +268,7 @@ class Level:
         else:
             self.screen.fill('black')
     
-    def create_eclairs(self,sprite):
+    def create_eclairs(self,sprite, hard):
         eclairs = []
         apparition = [(rd.randint(10,400),rd.randint(10,400)),
                     (rd.randint(400,790),rd.randint(10,400)),
@@ -276,11 +276,16 @@ class Level:
                     (rd.randint(10,400),rd.randint(400,790)),
                     (rd.randint(400,790),rd.randint(400,790))]
         
+        
         for i in range(5):
             eclair = Falling_Ennemy(sprite_name=sprite,coord=apparition[i])
             self.sprite_falling_enemies.add(eclair)
             self.all_sprite.add(eclair)
             eclairs.append(eclair)
+            self.eclair = eclair
+            if hard:
+                eclair.state = "hit"
+                self.collide_sprite.add(self.eclair)
 
         pick = rd.randint(0,4)
         self.eclair = eclairs[pick]
