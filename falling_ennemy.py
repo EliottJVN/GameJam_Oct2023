@@ -17,7 +17,6 @@ class Falling_Ennemy(Sprite_Animation):
         self.rect.center = coord
         self.save_coord = coord
         self.timer = pygame.time.get_ticks()
-        print(self.timer)
         
     def update(self):      
         if pygame.time.get_ticks() - self.timer >= WAIT and self.state == 'hit':
