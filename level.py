@@ -6,6 +6,7 @@ from settings import *
 from middleImage import *
 from button import Space_Buton, E_Buton
 from rain import Rain
+from ui import UI
 
 
 class Level:
@@ -42,8 +43,10 @@ class Level:
 
         # objet
         self.player = Player(self.sprite_enemies, self.collide_sprite)
+        self.ui = UI(self.player.health)
        
-        self.all_sprite.add(self.player)        
+        self.all_sprite.add(self.player)    
+        
 
     
     # setup level en fonction niveau
@@ -119,6 +122,8 @@ class Level:
         if self.levelName == "11":
 
             # pour la pluie
+            self.ui.update(self.player.health)
+            self.screen.blit(self.ui.image,self.ui.rect)
             self.rain.update()
             
             # pour afficher SPACE pour frame perfect stop
@@ -164,7 +169,7 @@ class Level:
 
             #draw sprite
             self.all_sprite.draw(self.screen)
-
+            
             #update ce qui se passe et draw au dessus player
             self.update()
 
