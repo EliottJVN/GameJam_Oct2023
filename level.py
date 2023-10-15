@@ -85,7 +85,7 @@ class Level:
             self.rain = Rain(self.all_sprite)
             
             # Eclair
-            self.create_eclairs('eclair',self.player.hard)
+            self.create_eclairs('eclair')
             
             #player
             self.player.slide = True
@@ -99,6 +99,8 @@ class Level:
 
             # middle image
             self.middleImage = Crafting_Tables("middle_image", "crafting_table", LIST_MIDDLE_IMAGE)
+            if hasattr(self.middleImage, "isBurning"):
+                del self.middleImage.isBurning
             self.collide_sprite.add(self.middleImage)
             self.all_sprite.add(self.middleImage)
 
@@ -106,7 +108,7 @@ class Level:
             self.collide_sprite.add(self.goat)
             self.all_sprite.add(self.goat)
 
-            self.create_eclairs('crow',self.player.hard)
+            self.create_eclairs('crow')
             
             self.createStickAndStone()
 
@@ -136,7 +138,9 @@ class Level:
     def win(self):
 
         if self.levelName == "11" and not self.sprite_sticks and not self.player.inventory:
-                    
+            
+            self.middleImage.kill()
+
             self.all_sprite.empty()
             self.sprite_sticks.empty()
             self.sprite_falling_enemies.empty()
@@ -150,8 +154,10 @@ class Level:
 
             self.player.delete()
 
-        if self.levelName == "12" and not self.sprite_sticks and not self.player.inventory:
-
+        if self.levelName == "12" and self.middleImage.inventory["stick"] == 3 and self.middleImage.inventory["stone"] == 3:
+            
+            self.middleImage.kill()
+            
             self.all_sprite.empty()
             self.sprite_sticks.empty()
             self.sprite_falling_enemies.empty()
@@ -199,7 +205,7 @@ class Level:
             if pygame.time.get_ticks() - self.eclair.timer >= REFRESH:
                 for sprite in self.sprite_falling_enemies:
                     sprite.kill()
-                self.create_eclairs('eclair', self.player.hard)
+                self.create_eclairs('eclair')
         
         
         elif self.levelName == "12":
@@ -212,7 +218,7 @@ class Level:
             if pygame.time.get_ticks() - self.eclair.timer >= REFRESH:
                 for sprite in self.sprite_falling_enemies:
                     sprite.kill()
-                self.create_eclairs('crow', self.player.hard)
+                self.create_eclairs('crow')
                   
 
         # si le joueur peur récupérer ou déposer un objet
@@ -257,31 +263,22 @@ class Level:
         else:
             self.screen.fill('black')
     
-    def create_eclairs(self,sprite,hard=False):
-
+    def create_eclairs(self,sprite):
         eclairs = []
         apparition = [(rd.randint(10,400),rd.randint(10,400)),
                     (rd.randint(400,790),rd.randint(10,400)),
                     (rd.randint(10,790),rd.randint(10,790)),
                     (rd.randint(10,400),rd.randint(400,790)),
-                    (rd.randint(400,790),rd.randint(400,790))
-                    ]
+                    (rd.randint(400,790),rd.randint(400,790))]
         
-
-        for i in range(5):          
+        for i in range(5):
             eclair = Falling_Ennemy(sprite_name=sprite,coord=apparition[i])
             self.sprite_falling_enemies.add(eclair)
             self.all_sprite.add(eclair)
             eclairs.append(eclair)
-            self.eclair = eclair
-            if hard:
-                eclair.state = "hit"
-                self.collide_sprite.add(self.eclair)
-        
-        if not hard:
-            eclairs.append(eclair)
-            pick = rd.randint(0,4)
-            self.eclair = eclairs[pick]
-            self.eclair.state = "hit"
-            self.collide_sprite.add(self.eclair)
+
+        pick = rd.randint(0,4)
+        self.eclair = eclairs[pick]
+        self.eclair.state = "hit"
+        self.collide_sprite.add(self.eclair)
         

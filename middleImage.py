@@ -39,3 +39,6 @@ class Crafting_Tables(Middle_Image):
 
         # "animation" building
         self.image = pygame.transform.scale_by(pygame.image.load("assets/images/middle_image/middle_image_crafting_table/middle_image_crafting_table0.png").convert_alpha(), 3)
+
+        if hasattr(self, "isBurning"):
+            del self.isBurning
