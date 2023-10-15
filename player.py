@@ -196,7 +196,19 @@ class Player(Sprite_Animation):
         goesInLoop = False
 
         for sprite in self.collide_sprite.sprites():
-            if sprite.rect.colliderect(self.rect):
+            if hasattr(sprite, "hitbox"):
+                if sprite.hitbox_rect.colliderect(self.rect):
+                    if sprite.sprite_name == "eclair" and pygame.time.get_ticks() - sprite.timer >= WAIT:
+                                       
+                        if self.health > 0:
+                            self.health -= 1
+                            print(self.health)
+                            sprite.kill()
+                        else:
+                            print('game_over')
+                            self.health = MAX_HEALTH
+
+            elif sprite.rect.colliderect(self.rect):
                 # collide middleimage
                 if sprite.sprite_name == "middle_image":
                     self.test_collision(sprite)
@@ -218,15 +230,6 @@ class Player(Sprite_Animation):
                         if self.inventory == None:
                             self.inventory = sprite.type
                             sprite.kill()
-                
-                elif sprite.sprite_name == "eclair" and pygame.time.get_ticks() - sprite.timer >= WAIT:
-                    if self.health > 0:
-                        self.health -= 1
-                        print(self.health)
-                        sprite.kill()
-                    else:
-                        print('game_over')
-                        self.health = MAX_HEALTH
                     
                 else: goesInLoop = False
 

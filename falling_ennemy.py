@@ -7,8 +7,13 @@ class Falling_Ennemy(Sprite_Animation):
         self.state = 'idle'
         super().__init__(sprite_name,self.state,LIST_STATE_F_ENNEMY, SCALE_F_ENNEMY)
         # Création du rectangle
+        
+        
+        self.hitbox = pygame.image.load("assets\images\eclair\eclair_idle\eclair_idle0.png")
+        self.hitbox_rect = self.hitbox.get_rect()
+        self.hitbox_rect.center = coord
+
         self.rect = self.image.get_rect()
-        self.save_rect = self.rect
         self.rect.center = coord
         self.save_coord = coord
         self.timer = pygame.time.get_ticks()
