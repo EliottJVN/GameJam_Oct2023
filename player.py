@@ -36,6 +36,31 @@ class Player(Sprite_Animation):
         # group to collide
         self.sprite_enemies = sprite_enemies
         self.collide_sprite = collide_sprite 
+
+
+    # reset perso
+    def delete(self):
+
+        # Création des attributs par défaut du joueur    
+        self.health = HEALTH
+        self.max_health = MAX_HEALTH
+        self.velocity = VELOCITY_PLAYER
+        self.inventory = None
+        self.vector = pygame.math.Vector2(VECTOR) # Vérifie le déplacement
+        self.state = STATE
+        self.afficher_pickable = False
+
+        # attributs joueur slide
+        self.slide = SLIDE
+        self.slideBegin = False
+        self.slideActive = False
+        self.perfectStop = False
+        self.walk = False
+        self.space_bar_pressed = False
+
+        # Création du rectangle
+        self.rect = self.image.get_rect()
+        self.rect.center = (300, 400)
     
 
     def update(self):
@@ -216,8 +241,7 @@ class Player(Sprite_Animation):
                         sprite.current_img += 1
                         sprite.image = sprite.images[sprite.state][sprite.current_img]
                         self.inventory = None
-
-
+                        sprite.inventory["stick"] += 1
                 
                 elif sprite.sprite_name == "collectable":
                     # check si playeur a objet si non  alors afficher E

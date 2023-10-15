@@ -38,5 +38,4 @@ class Crafting_Tables(Middle_Image):
         self.isCraftable = False
 
         # "animation" building
-        self.list_images = [pygame.transform.scale_by(pygame.image.load(f"assets/images/middle_image/middle_image_crafting_pickaxe/middle_image_crafting_pickaxe{i}.png").convert_alpha(), 3) for i in range(6)]
-        self.image = self.list_images[0]
+        self.image = pygame.transform.scale_by(pygame.image.load("assets/images/middle_image/middle_image_crafting_table/middle_image_crafting_table0.png").convert_alpha(), 3)
