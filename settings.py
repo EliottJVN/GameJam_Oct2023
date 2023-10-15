@@ -17,10 +17,10 @@ FONT_SIZE_STOP_POS = (400, 400)
 FONT_SIZE_NBRSTICK = 20
 FONT_SIZE_NBRSTICK_POS = (400, 440)
 
-INTRO_TEXT_1 = "Ou et quand ai-je bien pu arriver...?"
-INTRO_TEXT_2 = "Cet endroit ne m'a pas l'air inhospitalié."
-INTRO_TEXT_3 = "Ho no!!! Mon pisto-portail s'est cassé!"
-INTRO_TEXT_4 = "Le chemin sera long pour pouvoir réparer le Pisto-portail"
+INTRO_TEXT_1 = "OU ET QUAND AI-JE BIEN PU ARRIVER...?"
+INTRO_TEXT_2 = "CET ENDROIT NE M'A PAS L'AIR INHOSPITALIER;"
+INTRO_TEXT_3 = "HO NON! MON PISTO-PORTAIL S'EST CASSE!"
+INTRO_TEXT_4 = "LE CHEMIN SERA LONG POUR POUVOIR REPARER LE PISTO-PORTAIL"
 
 
 # settings pos button
