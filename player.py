@@ -24,6 +24,7 @@ class Player(Sprite_Animation):
         self.perfectStop = False
         self.walk = False
         self.space_bar_pressed = False
+        self.dead = False
 
         # Création du rectangle
         self.rect = self.image.get_rect()
@@ -49,6 +50,7 @@ class Player(Sprite_Animation):
         self.vector = pygame.math.Vector2(VECTOR) # Vérifie le déplacement
         self.state = STATE
         self.afficher_pickable = False
+        self.dead = False
 
         # attributs joueur slide
         self.slide = SLIDE
@@ -229,9 +231,9 @@ class Player(Sprite_Animation):
                             self.health -= 1
                             print(self.health)
                             sprite.kill()
-                        else:
-                            print('game_over')
-                            self.health = MAX_HEALTH
+                        if self.health == 0:
+                            self.dead = True
+                            break
 
             elif sprite.rect.colliderect(self.rect):
                 # collide middleimage

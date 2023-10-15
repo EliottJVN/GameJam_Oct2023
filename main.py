@@ -1,6 +1,6 @@
 import pygame
 from settings import *
-from menu import Menu
+from menu import Menu, Game_Over
 from level import Level
 from map import Map
 
@@ -24,6 +24,7 @@ class Main():
         self.menu = Menu()
         self.level = Level()
         self.map = Map()
+        self.gameOverDisplay = Game_Over()
         
     
     # event loop de intro + menu
@@ -61,6 +62,21 @@ class Main():
 
 
     # event loop de level
+    def gameOver(self):
+
+        for event in pygame.event.get(): 
+            if event.type == pygame.QUIT:
+                self.running = False
+                pygame.quit()
+
+        self.gameOverDisplay.run()
+
+        # si le niveau est finit on repasse sur la masp
+        if self.gameOverDisplay.quit:
+            self.__init__()
+
+    
+    # event loop de level
     def levelLoop(self):
 
         for event in pygame.event.get():
@@ -73,6 +89,8 @@ class Main():
         # si le niveau est finit on repasse sur la map
         if not self.level.levelName:
             self.game_state = "map"
+        if self.level.levelName == "RESET":
+            self.game_state = "game over"
 
 
     def game_State_Management(self):
@@ -85,6 +103,8 @@ class Main():
                 self.mapLoop()
             elif self.game_state == "level":
                 self.levelLoop()
+            elif self.game_state == "game over":
+                self.gameOver()
 
             pygame.display.update()
             self.clock.tick(FPS)

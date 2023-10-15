@@ -26,6 +26,3 @@ class Collectable(Sprite_Animation):
         self.collision()
         Sprite_Animation.animate(self, key = self.type)
     
-    def collision(self):
-        pass
-    

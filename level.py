@@ -2,10 +2,12 @@ import pygame
 from player import Player
 from collectable import Collectable
 from falling_ennemy import Falling_Ennemy
+from running_ennemy import Running_Ennemy
 from settings import *
 from middleImage import *
 from button import Space_Buton, E_Buton
 from rain import Rain
+from ui import UI
 
 
 class Level:
@@ -42,8 +44,10 @@ class Level:
 
         # objet
         self.player = Player(self.sprite_enemies, self.collide_sprite)
+        self.ui = UI(self.player.health)
        
-        self.all_sprite.add(self.player)        
+        self.all_sprite.add(self.player)    
+        
 
     
     # setup level en fonction niveau
@@ -79,6 +83,7 @@ class Level:
             #player
             self.player.slide = True
 
+        ## Setup niv 1.2
         elif self.levelName == "12":
             # fond
             self.image = pygame.image.load("assets/images/backgrounds/day.png")
@@ -88,6 +93,11 @@ class Level:
             self.middleImage = Crafting_Tables("middle_image", "crafting_table", LIST_MIDDLE_IMAGE)
             self.collide_sprite.add(self.middleImage)
             self.all_sprite.add(self.middleImage)
+
+            self.goat = Running_Ennemy('goat')
+            self.collide_sprite.add(self.goat)
+            self.all_sprite.add(self.goat)
+
 
         elif self.levelName == "2":
             pass
@@ -99,13 +109,23 @@ class Level:
         if self.levelName == "11" and self.middleImage.inventory["stick"] == 5:
             
             self.all_sprite.empty()
+            self.sprite_sticks.empty()
+            self.sprite_falling_enemies.empty()
+            self.sprite_enemies.empty()
             self.sprite_enemies.empty()
 
             self.levelName = None
             self.image = None
             self.middleImage = None
+            self.get_rect = None
 
             self.player.delete()
+
+    # reset tout les groupes/attributs
+    def game_over(self):
+
+        if self.player.dead:
+            self.levelName = "RESET"
 
 
     def update(self):
@@ -113,6 +133,8 @@ class Level:
         if self.levelName == "11":
 
             # pour la pluie
+            self.ui.update(self.player.health)
+            self.screen.blit(self.ui.image,self.ui.rect)
             self.rain.update()
             
             # pour afficher SPACE pour frame perfect stop
@@ -158,7 +180,7 @@ class Level:
 
             #draw sprite
             self.all_sprite.draw(self.screen)
-
+            
             #update ce qui se passe et draw au dessus player
             self.update()
 
@@ -167,6 +189,9 @@ class Level:
 
             # verifie si a win
             self.win()
+
+            # verifie si dead
+            self.game_over()
         
         #sinon ecran noir
         else:
@@ -174,11 +199,11 @@ class Level:
     
     def create_eclairs(self):
         eclairs = []
-        apparition = [(rd.randint(120,300),rd.randint(120,300)),
-                    (rd.randint(500,680),rd.randint(120,300)),
-                    (rd.randint(120,300),rd.randint(300,500)),
-                    (rd.randint(120,300),rd.randint(500,680)),
-                    (rd.randint(500,680),rd.randint(500,680))]
+        apparition = [(rd.randint(10,400),rd.randint(10,400)),
+                    (rd.randint(400,790),rd.randint(10,400)),
+                    (rd.randint(10,790),rd.randint(10,790)),
+                    (rd.randint(10,400),rd.randint(400,790)),
+                    (rd.randint(400,790),rd.randint(400,790))]
         
         for i in range(5):
             eclair = Falling_Ennemy(sprite_name='eclair',coord=apparition[i])

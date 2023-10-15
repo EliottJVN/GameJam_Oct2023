@@ -41,12 +41,13 @@ LIST_STATE = ['idle','right','left','up','down', 'right_crash', 'left_crash', 'r
 # settings running ENNEMY
 VELOCITY_ENNEMY = 5
 VECTOR_ENNEMY = (0,0) # Vérifie le déplacement
-LIST_STATE_ENNEMY = ['right','left']
+LIST_STATE_ENNEMY = ['right','left','right_dash','left_dash']
+SCALE_ENNEMY = 3
 
 # settings falling ENNEMY
 LIST_STATE_F_ENNEMY = ['hit','idle']
 SCALE_F_ENNEMY = 2.5
-WAIT = 1000
+WAIT = 500
 REFRESH = 2000
 
 # settings middle image
