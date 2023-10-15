@@ -102,11 +102,15 @@ class Level:
         if self.levelName == "11" and self.middleImage.inventory["stick"] == 5:
             
             self.all_sprite.empty()
+            self.sprite_sticks.empty()
+            self.sprite_falling_enemies.empty()
+            self.sprite_enemies.empty()
             self.sprite_enemies.empty()
 
             self.levelName = None
             self.image = None
             self.middleImage = None
+            self.get_rect = None
 
             self.player.delete()
 
