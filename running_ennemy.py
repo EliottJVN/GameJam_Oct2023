@@ -47,5 +47,5 @@ class Running_Ennemy(Sprite_Animation):
             self.rect.centerx += self.velocity
             if self.rect.centerx > 1075:
                 self.state = rd.choice(['right_dash','left_dash'])
-                self.set_up
+                self.set_up()
         
