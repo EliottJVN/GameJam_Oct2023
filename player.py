@@ -205,6 +205,7 @@ class Player(Sprite_Animation):
                         sprite.image = sprite.images[sprite.state][sprite.current_img]
                         self.inventory = None
 
+
                 
                 elif sprite.sprite_name == "collectable":
                     self.afficher_pickable = True

@@ -1,6 +1,7 @@
 import pygame
 from player import Player
 from collectable import Collectable
+from falling_ennemy import Falling_Ennemy
 from settings import *
 from middleImage import *
 from button import Space_Buton, E_Buton
@@ -27,22 +28,13 @@ class Level:
         #group
         self.all_sprite = pygame.sprite.Group()
         self.sprite_sticks = pygame.sprite.Group()
+        self.sprite_falling_enemies = pygame.sprite.Group()
         self.sprite_enemies = pygame.sprite.Group()
         self.collide_sprite = pygame.sprite.Group()
 
         # objet
         self.player = Player(self.sprite_enemies, self.collide_sprite)
-
-    
-        for i in range(5):
-            stick = Collectable(POSITION_STICK[i],"stick")
-            self.sprite_sticks.add(stick)
-            self.collide_sprite.add(stick)
-            self.all_sprite.add(stick)
-
-        
-        self.rain = Rain(self.all_sprite)
-
+       
         self.all_sprite.add(self.player)        
 
     
@@ -61,6 +53,25 @@ class Level:
             self.middleImage = Campfire("middle_image", "campfire_building", LIST_MIDDLE_IMAGE)
             self.collide_sprite.add(self.middleImage)
             self.all_sprite.add(self.middleImage)
+
+            ## Collectable du niveau 1
+            for i in range(5):
+                stick = Collectable(POSITION_STICK[i],"stick")
+                self.sprite_sticks.add(stick)
+                self.collide_sprite.add(stick)
+                self.all_sprite.add(stick)
+            
+            ## Rain
+            self.rain = Rain(self.all_sprite)
+            
+            # Eclair
+            
+            for i in range(5):
+                eclair = Falling_Ennemy(sprite_name='eclair',coord=APPARITION[i])
+                self.sprite_falling_enemies.add(eclair)
+                self.collide_sprite.add(eclair)
+                self.all_sprite.add(eclair)
+
 
             #player
             self.player.slide = True
