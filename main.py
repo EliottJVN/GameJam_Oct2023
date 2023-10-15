@@ -8,7 +8,7 @@ from sound_manager import Sound_Manager
 class Main():
     def __init__(self):
 
-        # initiation pyagme
+        # initiation pygame
         pygame.init()
         self.sound_manager = Sound_Manager()
         self.musique = self.sound_manager.play_music('intro')
